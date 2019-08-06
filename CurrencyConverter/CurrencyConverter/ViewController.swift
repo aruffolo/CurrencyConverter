@@ -8,13 +8,22 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController
+{
 
-  override func viewDidLoad() {
+  override func viewDidLoad()
+  {
     super.viewDidLoad()
-    // Do any additional setup after loading the view.
   }
 
+  override func viewDidAppear(_ animated: Bool)
+  {
+    super.viewDidAppear(animated)
 
+    // this was just to test service
+//    APIClient.latestCurrenciesRates(completion: { result in
+//      // nothing to do
+//    })
+  }
 }
 
