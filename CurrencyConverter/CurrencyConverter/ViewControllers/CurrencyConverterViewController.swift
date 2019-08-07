@@ -29,8 +29,9 @@ class CurrencyConverterViewController: UIViewController, CurrencyViewProtocol
         super.viewDidLoad()
     }
     
-    func currencyIndexSelected(index: Int) {
-        // TODO
+    func currencyIndexSelected(index: Int)
+    {
+        print("index arrived: \(index)")
     }
     
     @IBAction func selectCurrencyTopAction(_ sender: UIButton)

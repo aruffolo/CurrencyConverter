@@ -39,11 +39,13 @@ class AppCoordinator {
     
     private func configureCurrencyController(currencyController: CurrencyPickerViewController)
     {
+        let viewModel = CurrencyPickerViewModel(view: currencyController)
+        currencyController.setViewModel(viewModel: viewModel)
+        
         currencyController.currencySelected = { [weak self] index in
             guard let strongSelf = self else { return }
             
-            print("index arrived: \(index)")
-            
+
             strongSelf.rootViewController.currencyIndexSelected(index: index)
         }
     }

@@ -8,13 +8,16 @@
 
 import UIKit
 
-class CurrencyPickerViewController: UIViewController
+class CurrencyPickerViewController: UIViewController, CurrencyPickerViewProtocol
 {
+
     @IBOutlet weak var pickerView: UIPickerView!
     
     var currencies: [String]!
     var currencySelected: ((_ index: Int) -> Void)?
-    var indexSelected: Int = 0
+    
+    private var viewModel: CurrencyPickerViewModelProtocol!
+    //var indexSelected: Int = 0
     
     static func createCurrencyPickerViewController(currencies: [String]) -> CurrencyPickerViewController
     {
@@ -23,8 +26,13 @@ class CurrencyPickerViewController: UIViewController
             fatalError("This must be a CurrencyPickerViewController")
         }
         vc.currencies = currencies
-        
+
         return vc
+    }
+    
+    func setViewModel(viewModel: CurrencyPickerViewModelProtocol)
+    {
+        self.viewModel = viewModel
     }
     
     override func viewDidLoad()
@@ -41,13 +49,23 @@ class CurrencyPickerViewController: UIViewController
     
     @IBAction func cancelButtonPressed(_ sender: UIButton)
     {
-        dismiss(animated: true, completion: nil)
+        viewModel.cancelButtonPressed()
     }
     
     @IBAction func doneButtonPressed(_ sender: UIButton)
     {
+        viewModel.doneButtonPressed()
+    }
+    
+    func closeView()
+    {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func closeWithIndexSelected(index: Int)
+    {
         dismiss(animated: true, completion: {
-            self.currencySelected?(self.indexSelected)
+            self.currencySelected?(index)
         })
     }
     
@@ -80,7 +98,7 @@ extension CurrencyPickerViewController: UIPickerViewDelegate
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
     {
         print("row selected: \(row)")
-        indexSelected = row
+        viewModel.indexChanged(index: row)
     }
 }
 
