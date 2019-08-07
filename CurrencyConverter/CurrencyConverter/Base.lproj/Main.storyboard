@@ -13,7 +13,7 @@
         <!--Currency Converter View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="CurrencyConverterViewController" customModule="CurrencyConverter" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CurrencyConverterViewController" id="BYZ-38-t0r" customClass="CurrencyConverterViewController" customModule="CurrencyConverter" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -124,6 +124,53 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+        </scene>
+        <!--Currency Picker View Controller-->
+        <scene sceneID="ym7-MO-5QK">
+            <objects>
+                <viewController storyboardIdentifier="CurrencyPickerViewController" id="e83-6U-t8j" customClass="CurrencyPickerViewController" customModule="CurrencyConverter" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="W8m-OX-dF6">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CQL-Di-3NA">
+                                <rect key="frame" x="0.0" y="680" width="414" height="216"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </pickerView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uJo-OP-AKp">
+                                <rect key="frame" x="20" y="640" width="48" height="30"/>
+                                <state key="normal" title="Cancel"/>
+                                <connections>
+                                    <action selector="cancelButtonPressed:" destination="e83-6U-t8j" eventType="touchUpInside" id="iyW-Oz-Wpl"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mYs-Di-Xdl">
+                                <rect key="frame" x="357" y="640" width="37" height="30"/>
+                                <state key="normal" title="Done"/>
+                                <connections>
+                                    <action selector="doneButtonPressed:" destination="e83-6U-t8j" eventType="touchUpInside" id="Hmo-8G-cbv"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="CQL-Di-3NA" firstAttribute="leading" secondItem="0JI-tC-axJ" secondAttribute="leading" id="0TD-rB-wMX"/>
+                            <constraint firstAttribute="trailing" secondItem="CQL-Di-3NA" secondAttribute="trailing" id="4fm-zl-cQD"/>
+                            <constraint firstItem="uJo-OP-AKp" firstAttribute="leading" secondItem="0JI-tC-axJ" secondAttribute="leading" constant="20" id="4kt-EY-bit"/>
+                            <constraint firstItem="0JI-tC-axJ" firstAttribute="trailing" secondItem="mYs-Di-Xdl" secondAttribute="trailing" constant="20" id="7r8-m9-xFF"/>
+                            <constraint firstItem="CQL-Di-3NA" firstAttribute="top" secondItem="mYs-Di-Xdl" secondAttribute="bottom" constant="10" id="9U1-dH-p6P"/>
+                            <constraint firstItem="CQL-Di-3NA" firstAttribute="top" secondItem="uJo-OP-AKp" secondAttribute="bottom" constant="10" id="RCI-EH-3pC"/>
+                            <constraint firstAttribute="bottom" secondItem="CQL-Di-3NA" secondAttribute="bottom" id="hvR-YC-ocd"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="0JI-tC-axJ"/>
+                    </view>
+                    <connections>
+                        <outlet property="pickerView" destination="CQL-Di-3NA" id="uyX-zO-CXf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Web-0l-uPw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1017" y="10"/>
         </scene>
     </scenes>
 </document>

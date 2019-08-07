@@ -8,27 +8,43 @@
 
 import UIKit
 
-class CurrencyConverterViewController: UIViewController
+protocol CurrencyViewProtocol where Self: UIViewController
+{
+    var showCurrencyList: (() -> Void)? { get set }
+    
+    func currencyIndexSelected(index: Int)
+}
+
+class CurrencyConverterViewController: UIViewController, CurrencyViewProtocol
 {
     @IBOutlet weak var currencyTopLabel: UILabel!
     @IBOutlet weak var currencyBottomLabel: UILabel!
     @IBOutlet weak var enterAmountTopTextField: UITextField!
     @IBOutlet weak var enterAmountBottomTextField: UITextField!
     
+    var showCurrencyList: (() -> Void)?
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
     }
     
+    func currencyIndexSelected(index: Int) {
+        // TODO
+    }
+    
     @IBAction func selectCurrencyTopAction(_ sender: UIButton)
     {
+        showCurrencyList?()
     }
     
     @IBAction func selectCurrencyBottomAction(_ sender: UIButton)
     {
+        showCurrencyList?()
     }
     
     @IBAction func convertAction(_ sender: UIButton)
     {
     }
+    
 }
