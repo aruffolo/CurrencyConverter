@@ -8,44 +8,56 @@
 
 import UIKit
 
-protocol CurrencyViewProtocol where Self: UIViewController
-{
-    var showCurrencyList: (() -> Void)? { get set }
-    
-    func currencyIndexSelected(index: Int)
-}
-
-class CurrencyConverterViewController: UIViewController, CurrencyViewProtocol
+class CurrencyConverterViewController: UIViewController, CurrencyConverterViewProtocol
 {
     @IBOutlet weak var currencyTopLabel: UILabel!
     @IBOutlet weak var currencyBottomLabel: UILabel!
     @IBOutlet weak var enterAmountTopTextField: UITextField!
     @IBOutlet weak var enterAmountBottomTextField: UITextField!
     
+    var viewModel: CurrencyConverterViewModelProtocol!
+    
     var showCurrencyList: (() -> Void)?
+    let textFieldDelegate = MoneyTextFieldDelegate()
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        
+        enterAmountTopTextField.delegate = textFieldDelegate
     }
     
+    // this should call the view model
     func currencyIndexSelected(index: Int)
     {
         print("index arrived: \(index)")
     }
     
-    @IBAction func selectCurrencyTopAction(_ sender: UIButton)
+    func setCurrencyConversion(currencyConverted: String)
+    {
+        enterAmountBottomTextField.text = currencyConverted
+    }
+    
+    func presentCurrencyPicker()
     {
         showCurrencyList?()
+    }
+    
+    @IBAction func selectCurrencyTopAction(_ sender: UIButton)
+    {
+        viewModel.selectCurrencyTopButtonPressed()
     }
     
     @IBAction func selectCurrencyBottomAction(_ sender: UIButton)
     {
-        showCurrencyList?()
+        viewModel.selectCurrencyBottomButtonPressed()
     }
     
     @IBAction func convertAction(_ sender: UIButton)
     {
+        if let amount = enterAmountTopTextField.text
+        {
+            viewModel.convertButtonPressed(importToConvert: amount)
+        }
     }
-    
 }

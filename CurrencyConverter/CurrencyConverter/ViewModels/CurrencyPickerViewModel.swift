@@ -19,7 +19,8 @@ struct CurrencyPickerViewModel: CurrencyPickerViewModelProtocol
         indexSelected = 0
     }
     
-    mutating func indexChanged(index: Int) {
+    mutating func indexChanged(index: Int)
+    {
         self.indexSelected = index
     }
 

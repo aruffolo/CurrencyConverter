@@ -10,5 +10,7 @@ import Foundation
 
 protocol CurrencyConverterViewModelProtocol
 {
-    
+    func selectCurrencyTopButtonPressed()
+    func selectCurrencyBottomButtonPressed()
+    func convertButtonPressed(importToConvert: String)
 }

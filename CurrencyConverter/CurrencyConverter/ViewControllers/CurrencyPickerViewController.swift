@@ -10,15 +10,13 @@ import UIKit
 
 class CurrencyPickerViewController: UIViewController, CurrencyPickerViewProtocol
 {
-
     @IBOutlet weak var pickerView: UIPickerView!
     
     var currencies: [String]!
     var currencySelected: ((_ index: Int) -> Void)?
     
     private var viewModel: CurrencyPickerViewModelProtocol!
-    //var indexSelected: Int = 0
-    
+
     static func createCurrencyPickerViewController(currencies: [String]) -> CurrencyPickerViewController
     {
         let storyboard = UIStoryboard.init(name: "Main", bundle: nil)

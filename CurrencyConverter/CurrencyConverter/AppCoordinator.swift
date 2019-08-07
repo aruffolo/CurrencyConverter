@@ -10,9 +10,9 @@ import Foundation
 import UIKit
 
 class AppCoordinator {
-    private weak var rootViewController: CurrencyViewProtocol!
+    private weak var rootViewController: CurrencyConverterViewProtocol!
     
-    init(rootViewController: CurrencyViewProtocol)
+    init(rootViewController: CurrencyConverterViewProtocol)
     {
         self.rootViewController = rootViewController
         configureRootController()
@@ -20,6 +20,9 @@ class AppCoordinator {
     
     private func configureRootController()
     {
+        let currencyViewModel = CurrencyConverterViewModel(currencyViewController: rootViewController)
+        rootViewController.viewModel = currencyViewModel
+
         rootViewController.showCurrencyList = { [weak self] in
             guard let strongSelf = self else { return }
             strongSelf.showCurrencyPickerViewContoller(parentViewController: strongSelf.rootViewController)
@@ -44,7 +47,6 @@ class AppCoordinator {
         
         currencyController.currencySelected = { [weak self] index in
             guard let strongSelf = self else { return }
-            
 
             strongSelf.rootViewController.currencyIndexSelected(index: index)
         }

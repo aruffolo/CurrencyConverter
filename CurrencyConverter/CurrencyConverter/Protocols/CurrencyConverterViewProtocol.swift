@@ -11,5 +11,11 @@ import UIKit
 
 protocol CurrencyConverterViewProtocol where Self: UIViewController
 {
+    var viewModel: CurrencyConverterViewModelProtocol! { get set }
     
+    var showCurrencyList: (() -> Void)? { get set }
+    func currencyIndexSelected(index: Int)
+    
+    func setCurrencyConversion(currencyConverted: String)
+    func presentCurrencyPicker()
 }
