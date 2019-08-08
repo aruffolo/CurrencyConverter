@@ -27,16 +27,19 @@ struct CurrencyFetcher: CurrencyFetcherProtocol
     {
         let readCache = cacheShouldBeRead()
         let timeIntervalIsValid = readCache.1
-        if let cache = readCache.0, timeIntervalIsValid {
+        if let cache = readCache.0, timeIntervalIsValid
+        {
             completion(.success(cache))
         }
         else
         {
+            // if this fails then try to use the cached data
             APIClient.latestCurrenciesRates(completion: { result in
                 switch result
                 {
                 case .success(let response):
                     let model = self.createDataModelFromResponse(response: response)
+                    // If I'm here it means that cache is invalid or not saved yet. I must save it
                     ConsistencyClient.setRates(currencyModel: model)
                     completion(Result.success(model))
                     break
