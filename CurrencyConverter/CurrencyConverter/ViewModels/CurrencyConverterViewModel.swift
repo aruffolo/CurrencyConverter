@@ -20,11 +20,15 @@ struct CurrencyConverterViewModel: CurrencyConverterViewModelProtocol
     private var currencyFrom: String?
     private var currencyTo: String?
     
+    var viewData: CurrencyConverterViewData
+    
     init(currencyViewController: CurrencyConverterViewProtocol)
     {
         self.currencyViewController = currencyViewController
         self.currencyConverter = CurrencyConverterCalculator()
         waitingForFromCurrecyToSet = false
+        
+        viewData = CurrencyConverterViewData(topAmount: "", topCurrency: "currency", bottomAmount: "", bottomCurrency: "currency")
         
         // TODO: remove it and uses just the currencies from the service
         createStubValues()
@@ -36,6 +40,7 @@ struct CurrencyConverterViewModel: CurrencyConverterViewModelProtocol
     private mutating func createStubValues()
     {
         self.currenciesRates = [
+            "EUR": 1,
             "AUD": 1.566015,
             "CAD": 1.560132,
             "CHF": 1.154727,
@@ -47,6 +52,16 @@ struct CurrencyConverterViewModel: CurrencyConverterViewModelProtocol
     }
     
     // TODO: call service to retrieve list of exchanger rates
+    mutating func viewWillAppear()
+    {
+        currencyViewController?.updateView(viewData: viewData)
+    }
+    
+    mutating func topAmountChanged(amount: String)
+    {
+        viewData.topAmount = amount
+        currencyViewController?.updateView(viewData: viewData)
+    }
 
     mutating func selectCurrencyTopButtonPressed()
     {
@@ -62,23 +77,25 @@ struct CurrencyConverterViewModel: CurrencyConverterViewModelProtocol
     
     mutating func currencyIndexSelected(index: Int)
     {
+        let selected = currenciesRates.keys.sorted()[index]
+        
         if waitingForFromCurrecyToSet
         {
-            currencyFrom = currenciesRates.keys.sorted()[index]
+            currencyFrom = selected
+            viewData.topCurrency = selected
         }
         else
         {
-            currencyTo = currenciesRates.keys.sorted()[index]
+            currencyTo = selected
+            viewData.bottomCurrency = selected
         }
         
-        let viewData = CurrencyConverterViewData(topAmount: nil,
-                                                 topCurrency: currencyFrom,
-                                                 bottomAmount: nil,
-                                                 bottomCurrency: currencyTo)
+        // I may want to reset the amount on the bottom
+        viewData.bottomAmount = ""
         currencyViewController?.updateView(viewData: viewData)
     }
     
-    func convertButtonPressed(importToConvert: String)
+    mutating func convertButtonPressed(importToConvert: String)
     {
         guard let number = NumbersUtil.convertStringToDouble(stringNumber: importToConvert) else {
             // TODO: show error
@@ -101,7 +118,7 @@ struct CurrencyConverterViewModel: CurrencyConverterViewModelProtocol
             return
         }
         
-        let viewData = CurrencyConverterViewData(topAmount: importToConvert,
+        viewData = CurrencyConverterViewData(topAmount: importToConvert,
                                                  topCurrency: currencyFrom,
                                                  bottomAmount: stringConverted,
                                                  bottomCurrency: currencyTo)

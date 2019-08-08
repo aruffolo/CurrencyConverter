@@ -24,7 +24,14 @@ class CurrencyConverterViewController: UIViewController, CurrencyConverterViewPr
     {
         super.viewDidLoad()
         
-        enterAmountTopTextField.delegate = textFieldDelegate
+        enterAmountTopTextField.delegate = self
+        enterAmountTopTextField.addTarget(self, action: #selector(textFieldDidChange(textField:)), for: .editingChanged)
+    }
+    
+    override func viewWillAppear(_ animated: Bool)
+    {
+        super.viewWillAppear(animated)
+        viewModel.viewWillAppear()
     }
     
     // this should call the view model
@@ -41,24 +48,11 @@ class CurrencyConverterViewController: UIViewController, CurrencyConverterViewPr
     
     func updateView(viewData: CurrencyConverterViewData)
     {
-        if viewData.topCurrency != nil
-        {
-            currencyTopLabel.text = viewData.topCurrency
-        }
-        if viewData.bottomCurrency != nil
-        {
-            currencyBottomLabel.text = viewData.bottomCurrency
-        }
+        currencyTopLabel.text = viewData.topCurrency
+        currencyBottomLabel.text = viewData.bottomCurrency
 
-        if viewData.topAmount != nil
-        {
-            enterAmountTopTextField.text = viewData.topAmount
-        }
-
-        if viewData.bottomAmount != nil
-        {
-            enterAmountBottomTextField.text = viewData.bottomAmount
-        }
+        enterAmountTopTextField.text = viewData.topAmount
+        enterAmountBottomTextField.text = viewData.bottomAmount
     }
     
     @IBAction func selectCurrencyTopAction(_ sender: UIButton)
@@ -78,5 +72,21 @@ class CurrencyConverterViewController: UIViewController, CurrencyConverterViewPr
         {
             viewModel.convertButtonPressed(importToConvert: amount)
         }
+    }
+    
+    @objc func textFieldDidChange(textField: UITextField)
+    {
+        viewModel.topAmountChanged(amount: textField.text ?? "")
+    }
+}
+
+extension CurrencyConverterViewController: UITextFieldDelegate
+{
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        
+        viewModel.topAmountChanged(amount: textField.text ?? "")
+
+        return true
     }
 }
