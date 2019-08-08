@@ -23,15 +23,16 @@ class AppCoordinator {
         let currencyViewModel = CurrencyConverterViewModel(currencyViewController: rootViewController)
         rootViewController.viewModel = currencyViewModel
 
-        rootViewController.showCurrencyList = { [weak self] in
+        rootViewController.showCurrencyList = { [weak self] currencies in
             guard let strongSelf = self else { return }
-            strongSelf.showCurrencyPickerViewContoller(parentViewController: strongSelf.rootViewController)
+            strongSelf.showCurrencyPickerViewContoller(parentViewController: strongSelf.rootViewController,
+                                                       currencies: currencies)
         }
     }
     
-    private func showCurrencyPickerViewContoller(parentViewController: UIViewController)
+    private func showCurrencyPickerViewContoller(parentViewController: UIViewController, currencies: [String])
     {
-        let vc = CurrencyPickerViewController.createCurrencyPickerViewController(currencies: ["EUR", "USD"])
+        let vc = CurrencyPickerViewController.createCurrencyPickerViewController(currencies: currencies)
         vc.modalPresentationStyle = .overCurrentContext
         vc.modalTransitionStyle = .crossDissolve
         

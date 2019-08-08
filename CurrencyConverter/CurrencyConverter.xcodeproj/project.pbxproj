@@ -30,6 +30,8 @@
 		7DC9C79222FB1444004727B1 /* CurrencyConverterViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC9C79122FB1444004727B1 /* CurrencyConverterViewProtocol.swift */; };
 		7DC9C79522FB28D2004727B1 /* NumbersUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC9C79422FB28D2004727B1 /* NumbersUtil.swift */; };
 		7DC9C79722FB4EFA004727B1 /* MoneyTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC9C79622FB4EFA004727B1 /* MoneyTextFieldDelegate.swift */; };
+		7DC9C79A22FC06A6004727B1 /* CurrencyConverterViewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC9C79922FC06A6004727B1 /* CurrencyConverterViewData.swift */; };
+		7DC9C79C22FC2DCB004727B1 /* CurrencyConverterCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC9C79B22FC2DCB004727B1 /* CurrencyConverterCalculator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +80,8 @@
 		7DC9C79122FB1444004727B1 /* CurrencyConverterViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyConverterViewProtocol.swift; sourceTree = "<group>"; };
 		7DC9C79422FB28D2004727B1 /* NumbersUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumbersUtil.swift; sourceTree = "<group>"; };
 		7DC9C79622FB4EFA004727B1 /* MoneyTextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneyTextFieldDelegate.swift; sourceTree = "<group>"; };
+		7DC9C79922FC06A6004727B1 /* CurrencyConverterViewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyConverterViewData.swift; sourceTree = "<group>"; };
+		7DC9C79B22FC2DCB004727B1 /* CurrencyConverterCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyConverterCalculator.swift; sourceTree = "<group>"; };
 		9FC9EC09B32BDBE12EA5AD32 /* Pods-CurrencyConverter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CurrencyConverter.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CurrencyConverter/Pods-CurrencyConverter.debug.xcconfig"; sourceTree = "<group>"; };
 		BF8431F97964A62CC649B92B /* Pods-CurrencyConverter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CurrencyConverter.release.xcconfig"; path = "Pods/Target Support Files/Pods-CurrencyConverter/Pods-CurrencyConverter.release.xcconfig"; sourceTree = "<group>"; };
 		C6EBDE87BC5E3AA6EA558916 /* Pods_CurrencyConverter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CurrencyConverter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -142,6 +146,7 @@
 		0E7915C522FA09D40053F7D8 /* CurrencyConverter */ = {
 			isa = PBXGroup;
 			children = (
+				7DC9C79822FC0630004727B1 /* ViewDataModels */,
 				7DC9C79322FB28B8004727B1 /* Utils */,
 				7DC9C78A22FB11CB004727B1 /* Protocols */,
 				7DC9C78522FAFC0D004727B1 /* ViewModels */,
@@ -237,8 +242,17 @@
 			isa = PBXGroup;
 			children = (
 				7DC9C79422FB28D2004727B1 /* NumbersUtil.swift */,
+				7DC9C79B22FC2DCB004727B1 /* CurrencyConverterCalculator.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		7DC9C79822FC0630004727B1 /* ViewDataModels */ = {
+			isa = PBXGroup;
+			children = (
+				7DC9C79922FC06A6004727B1 /* CurrencyConverterViewData.swift */,
+			);
+			path = ViewDataModels;
 			sourceTree = "<group>";
 		};
 		EEEB7698DB44099865AEBEC6 /* Pods */ = {
@@ -423,7 +437,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				0EC6B54122FA14C00062FF89 /* ExchangeRatesResponse.swift in Sources */,
+				7DC9C79C22FC2DCB004727B1 /* CurrencyConverterCalculator.swift in Sources */,
 				0EC6B54522FA17420062FF89 /* APIConstants.swift in Sources */,
+				7DC9C79A22FC06A6004727B1 /* CurrencyConverterViewData.swift in Sources */,
 				7DC9C78022FACAA8004727B1 /* CurrencyConverterViewController.swift in Sources */,
 				7DC9C78C22FB13FA004727B1 /* CurrencyPickerViewModelProtocol.swift in Sources */,
 				7DC9C79022FB142F004727B1 /* CurrencyConverterViewModelProtocol.swift in Sources */,

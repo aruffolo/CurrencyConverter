@@ -13,9 +13,10 @@ protocol CurrencyConverterViewProtocol where Self: UIViewController
 {
     var viewModel: CurrencyConverterViewModelProtocol! { get set }
     
-    var showCurrencyList: (() -> Void)? { get set }
+    var showCurrencyList: ((_ currencies: [String]) -> Void)? { get set }
     func currencyIndexSelected(index: Int)
     
-    func setCurrencyConversion(currencyConverted: String)
-    func presentCurrencyPicker()
+    func presentCurrencyPicker(currencies: [String])
+    
+    func updateView(viewData: CurrencyConverterViewData)
 }
