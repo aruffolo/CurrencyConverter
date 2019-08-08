@@ -50,8 +50,15 @@ class CurrencyConverterViewController: UIViewController, CurrencyConverterViewPr
             currencyBottomLabel.text = viewData.bottomCurrency
         }
 
-        enterAmountTopTextField.text = viewData.topAmount
-        enterAmountBottomTextField.text = viewData.bottomAmount
+        if viewData.topAmount != nil
+        {
+            enterAmountTopTextField.text = viewData.topAmount
+        }
+
+        if viewData.bottomAmount != nil
+        {
+            enterAmountBottomTextField.text = viewData.bottomAmount
+        }
     }
     
     @IBAction func selectCurrencyTopAction(_ sender: UIButton)
