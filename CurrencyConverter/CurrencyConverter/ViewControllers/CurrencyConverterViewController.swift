@@ -78,6 +78,27 @@ class CurrencyConverterViewController: UIViewController, CurrencyConverterViewPr
     {
         viewModel.topAmountChanged(amount: textField.text ?? "")
     }
+    
+    func showErrorForDataFailure(title: String, message: String, buttonLabel: String)
+    {
+        let alertController = UIAlertController(title: title, message:
+            message, preferredStyle: UIAlertController.Style.alert)
+        
+        alertController.addAction(UIAlertAction(title: buttonLabel, style: UIAlertAction.Style.default, handler: { [weak self] action in
+            self?.viewModel.loadData()
+        }))
+        
+        self.present(alertController, animated: true, completion: nil)
+    }
+
+    func showError(title: String, message: String, buttonLabel: String)
+    {
+        let alertController = UIAlertController(title: title, message:
+            message, preferredStyle: UIAlertController.Style.alert)
+        alertController.addAction(UIAlertAction(title: buttonLabel, style: UIAlertAction.Style.default, handler: nil))
+        
+        self.present(alertController, animated: true, completion: nil)
+    }
 }
 
 extension CurrencyConverterViewController: UITextFieldDelegate

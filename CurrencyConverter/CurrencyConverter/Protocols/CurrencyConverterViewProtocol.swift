@@ -19,4 +19,7 @@ protocol CurrencyConverterViewProtocol where Self: UIViewController
     func presentCurrencyPicker(currencies: [String])
     
     func updateView(viewData: CurrencyConverterViewData)
+    
+    func showError(title: String, message: String, buttonLabel: String)
+    func showErrorForDataFailure(title: String, message: String, buttonLabel: String)
 }

@@ -9,7 +9,8 @@
 import Foundation
 import UIKit
 
-class AppCoordinator {
+class AppCoordinator
+{
     private weak var rootViewController: CurrencyConverterViewProtocol!
     
     init(rootViewController: CurrencyConverterViewProtocol)
@@ -20,7 +21,9 @@ class AppCoordinator {
     
     private func configureRootController()
     {
-        let currencyViewModel = CurrencyConverterViewModel(currencyViewController: rootViewController)
+        let ratesFetcher = CurrencyFetcher()
+        let currencyViewModel = CurrencyConverterViewModel(currencyViewController: rootViewController,
+                                                           ratesFetcher: ratesFetcher)
         rootViewController.viewModel = currencyViewModel
 
         rootViewController.showCurrencyList = { [weak self] currencies in

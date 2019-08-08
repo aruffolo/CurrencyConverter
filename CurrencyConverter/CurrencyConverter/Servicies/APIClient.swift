@@ -13,17 +13,17 @@ class APIClient {
   static func latestCurrenciesRates(completion: @escaping (_ result: AFResult<ExchangeRates>) -> Void)
   {
     // this is just to test result, error handling should be take care of by caller
-    request(ApiRouter.latest, completion: { (afResult: AFResult<ExchangeRates>) in
-      switch afResult {
-      case .success(let exchanges):
-        
-        break
-      case .failure(let error):
-        break
-      }
-    })
+//    request(ApiRouter.latest, completion: { (afResult: AFResult<ExchangeRates>) in
+//      switch afResult {
+//      case .success(let exchanges):
+//
+//        break
+//      case .failure(let error):
+//        break
+//      }
+//    })
 
-    //request(ApiRouter.latest, completion: completion)
+    request(ApiRouter.latest, completion: completion)
   }
 
   private static func request<T: Codable>(_ urlConvertible: URLRequestConvertible,

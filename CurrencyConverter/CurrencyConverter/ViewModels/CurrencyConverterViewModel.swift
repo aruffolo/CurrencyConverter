@@ -8,23 +8,24 @@
 
 import Foundation
 
-struct CurrencyConverterViewModel: CurrencyConverterViewModelProtocol
+class CurrencyConverterViewModel: CurrencyConverterViewModelProtocol
 {
     private weak var currencyViewController: CurrencyConverterViewProtocol?
     private var currencyConverter: CurrencyConverterCalculator
-
-    private var currenciesRates: [String: Double] = [:]
     
+    private var currenciesRates: [String: Double] = [:]
     private var waitingForFromCurrecyToSet: Bool
     
     private var currencyFrom: String?
     private var currencyTo: String?
     
     var viewData: CurrencyConverterViewData
+    let ratesFetcher: CurrencyFetcherProtocol
     
-    init(currencyViewController: CurrencyConverterViewProtocol)
+    init(currencyViewController: CurrencyConverterViewProtocol, ratesFetcher: CurrencyFetcherProtocol)
     {
         self.currencyViewController = currencyViewController
+        self.ratesFetcher = ratesFetcher
         self.currencyConverter = CurrencyConverterCalculator()
         waitingForFromCurrecyToSet = false
         
@@ -37,7 +38,7 @@ struct CurrencyConverterViewModel: CurrencyConverterViewModelProtocol
         currencyConverter.currencies = currenciesRates
     }
     
-    private mutating func createStubValues()
+    private func createStubValues()
     {
         self.currenciesRates = [
             "EUR": 1,
@@ -51,31 +52,51 @@ struct CurrencyConverterViewModel: CurrencyConverterViewModelProtocol
         ]
     }
     
-    // TODO: call service to retrieve list of exchanger rates
-    mutating func viewWillAppear()
+    func viewWillAppear()
     {
-        currencyViewController?.updateView(viewData: viewData)
+        loadData()
     }
     
-    mutating func topAmountChanged(amount: String)
+    func loadData()
+    {
+        ratesFetcher.latestCurrenciesRates(completion: { [weak self] dataModel in
+            self?.receiveRates(ratesResult: dataModel)
+        })
+    }
+    
+    func receiveRates(ratesResult: Result<CurrencyDataModel, RatesFetchError>)
+    {
+        switch ratesResult
+        {
+        case .success(let model):
+            currencyConverter.baseCurrency = model.baseCurrency
+            currencyConverter.currencies = model.rates
+            currenciesRates = model.rates
+        case .failure:
+            currencyViewController?.showErrorForDataFailure(title: "Error", message: "Service not available, check interner connection", buttonLabel: "Retry")
+            break
+        }
+    }
+    
+    func topAmountChanged(amount: String)
     {
         viewData.topAmount = amount
         currencyViewController?.updateView(viewData: viewData)
     }
-
-    mutating func selectCurrencyTopButtonPressed()
+    
+    func selectCurrencyTopButtonPressed()
     {
         waitingForFromCurrecyToSet = true
         currencyViewController?.presentCurrencyPicker(currencies: currenciesRates.keys.sorted())
     }
     
-    mutating func selectCurrencyBottomButtonPressed()
+    func selectCurrencyBottomButtonPressed()
     {
         waitingForFromCurrecyToSet = false
         currencyViewController?.presentCurrencyPicker(currencies: currenciesRates.keys.sorted())
     }
     
-    mutating func currencyIndexSelected(index: Int)
+    func currencyIndexSelected(index: Int)
     {
         let selected = currenciesRates.keys.sorted()[index]
         
@@ -95,17 +116,15 @@ struct CurrencyConverterViewModel: CurrencyConverterViewModelProtocol
         currencyViewController?.updateView(viewData: viewData)
     }
     
-    mutating func convertButtonPressed(importToConvert: String)
+    func convertButtonPressed(importToConvert: String)
     {
         guard let number = NumbersUtil.convertStringToDouble(stringNumber: importToConvert) else {
-            // TODO: show error
-            
+            currencyViewController?.showError(title: "Error", message: "value inserted is not in valid format", buttonLabel: "Close")
             return
         }
         
         guard let currencyFrom = currencyFrom, let currencyTo = currencyTo else {
-            // TODO: show error
-            
+            currencyViewController?.showError(title: "Error", message: "Please, select both currency to convert value", buttonLabel: "Close")
             return
         }
         
@@ -114,14 +133,14 @@ struct CurrencyConverterViewModel: CurrencyConverterViewModelProtocol
                                                                     valueToConvert: number)
         
         guard let stringConverted = NumbersUtil.converDoubleToFormattedString(importInserted: valueConverted) else {
-            // TODO: show error in formatting
+            currencyViewController?.showError(title: "Error", message: "It was not possible to convert", buttonLabel: "Close")
             return
         }
         
         viewData = CurrencyConverterViewData(topAmount: importToConvert,
-                                                 topCurrency: currencyFrom,
-                                                 bottomAmount: stringConverted,
-                                                 bottomCurrency: currencyTo)
+                                             topCurrency: currencyFrom,
+                                             bottomAmount: stringConverted,
+                                             bottomCurrency: currencyTo)
         
         currencyViewController?.updateView(viewData: viewData)
     }
