@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct CurrencyDataModel
+struct CurrencyDataModel: Codable
 {
     let rates: [String: Double]
     let baseCurrency: String

@@ -73,7 +73,7 @@ class CurrencyConverterViewModel: CurrencyConverterViewModelProtocol
             currencyConverter.currencies = model.rates
             currenciesRates = model.rates
         case .failure:
-            currencyViewController?.showErrorForDataFailure(title: "Error", message: "Service not available, check interner connection", buttonLabel: "Retry")
+            currencyViewController?.showErrorForDataFailure(title: "Error", message: "Service not available, check internet connection", buttonLabel: "Retry")
             break
         }
     }
