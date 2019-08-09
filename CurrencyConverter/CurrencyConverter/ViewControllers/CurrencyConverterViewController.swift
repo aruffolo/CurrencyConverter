@@ -18,8 +18,7 @@ class CurrencyConverterViewController: UIViewController, CurrencyConverterViewPr
     var viewModel: CurrencyConverterViewModelProtocol!
     
     var showCurrencyList: ((_ currencies: [String]) -> Void)?
-    let textFieldDelegate = MoneyTextFieldDelegate()
-    
+
     override func viewDidLoad()
     {
         super.viewDidLoad()

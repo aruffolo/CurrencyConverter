@@ -8,7 +8,8 @@
 
 import Foundation
 
-struct ExchangeRates: Codable {
+struct ExchangeRates: Codable
+{
   let success: Bool
   let timestamp: Int
   let base, date: String

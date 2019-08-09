@@ -29,7 +29,6 @@
 		7DC9C79022FB142F004727B1 /* CurrencyConverterViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC9C78F22FB142F004727B1 /* CurrencyConverterViewModelProtocol.swift */; };
 		7DC9C79222FB1444004727B1 /* CurrencyConverterViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC9C79122FB1444004727B1 /* CurrencyConverterViewProtocol.swift */; };
 		7DC9C79522FB28D2004727B1 /* NumbersUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC9C79422FB28D2004727B1 /* NumbersUtil.swift */; };
-		7DC9C79722FB4EFA004727B1 /* MoneyTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC9C79622FB4EFA004727B1 /* MoneyTextFieldDelegate.swift */; };
 		7DC9C79A22FC06A6004727B1 /* CurrencyConverterViewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC9C79922FC06A6004727B1 /* CurrencyConverterViewData.swift */; };
 		7DC9C79C22FC2DCB004727B1 /* CurrencyConverterCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC9C79B22FC2DCB004727B1 /* CurrencyConverterCalculator.swift */; };
 		7DC9C79E22FC95A4004727B1 /* CurrencyDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC9C79D22FC95A4004727B1 /* CurrencyDataModel.swift */; };
@@ -82,7 +81,6 @@
 		7DC9C78F22FB142F004727B1 /* CurrencyConverterViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyConverterViewModelProtocol.swift; sourceTree = "<group>"; };
 		7DC9C79122FB1444004727B1 /* CurrencyConverterViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyConverterViewProtocol.swift; sourceTree = "<group>"; };
 		7DC9C79422FB28D2004727B1 /* NumbersUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumbersUtil.swift; sourceTree = "<group>"; };
-		7DC9C79622FB4EFA004727B1 /* MoneyTextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneyTextFieldDelegate.swift; sourceTree = "<group>"; };
 		7DC9C79922FC06A6004727B1 /* CurrencyConverterViewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyConverterViewData.swift; sourceTree = "<group>"; };
 		7DC9C79B22FC2DCB004727B1 /* CurrencyConverterCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyConverterCalculator.swift; sourceTree = "<group>"; };
 		7DC9C79D22FC95A4004727B1 /* CurrencyDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyDataModel.swift; sourceTree = "<group>"; };
@@ -152,19 +150,19 @@
 		0E7915C522FA09D40053F7D8 /* CurrencyConverter */ = {
 			isa = PBXGroup;
 			children = (
-				7DC9C79822FC0630004727B1 /* Models */,
+				0EC6B54822FA1AE80062FF89 /* Extensions */,
 				7DC9C79322FB28B8004727B1 /* Utils */,
+				0EC6B53E22FA13540062FF89 /* Servicies */,
+				7DC9C79822FC0630004727B1 /* Models */,
 				7DC9C78A22FB11CB004727B1 /* Protocols */,
 				7DC9C78522FAFC0D004727B1 /* ViewModels */,
-				0EC6B53E22FA13540062FF89 /* Servicies */,
-				0EC6B54822FA1AE80062FF89 /* Extensions */,
 				7DC9C77E22FACA85004727B1 /* ViewControllers */,
+				7DC9C78122FAD09D004727B1 /* AppCoordinator.swift */,
 				0E7915C622FA09D40053F7D8 /* AppDelegate.swift */,
 				0E7915CA22FA09D40053F7D8 /* Main.storyboard */,
 				0E7915CD22FA09D50053F7D8 /* Assets.xcassets */,
 				0E7915CF22FA09D50053F7D8 /* LaunchScreen.storyboard */,
 				0E7915D222FA09D50053F7D8 /* Info.plist */,
-				7DC9C78122FAD09D004727B1 /* AppCoordinator.swift */,
 			);
 			path = CurrencyConverter;
 			sourceTree = "<group>";
@@ -221,7 +219,6 @@
 			children = (
 				7DC9C77F22FACAA8004727B1 /* CurrencyConverterViewController.swift */,
 				7DC9C78322FAD727004727B1 /* CurrencyPickerViewController.swift */,
-				7DC9C79622FB4EFA004727B1 /* MoneyTextFieldDelegate.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -459,7 +456,6 @@
 				7DC9C78722FB0487004727B1 /* CurrencyConverterViewModel.swift in Sources */,
 				7DC9C78222FAD09D004727B1 /* AppCoordinator.swift in Sources */,
 				7DC9C78E22FB1411004727B1 /* CurrencyPickerViewProtocol.swift in Sources */,
-				7DC9C79722FB4EFA004727B1 /* MoneyTextFieldDelegate.swift in Sources */,
 				7DC9C78422FAD727004727B1 /* CurrencyPickerViewController.swift in Sources */,
 				7DC9C78922FB049A004727B1 /* CurrencyPickerViewModel.swift in Sources */,
 				7DC9C79222FB1444004727B1 /* CurrencyConverterViewProtocol.swift in Sources */,

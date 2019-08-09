@@ -39,17 +39,17 @@ class AppCoordinator
         vc.modalPresentationStyle = .overCurrentContext
         vc.modalTransitionStyle = .crossDissolve
         
-        configureCurrencyController(currencyController: vc)
+        configureCurrencyPickerController(currencyPickerController: vc)
         
         parentViewController.present(vc, animated: true, completion: nil)
     }
     
-    private func configureCurrencyController(currencyController: CurrencyPickerViewController)
+    private func configureCurrencyPickerController(currencyPickerController: CurrencyPickerViewController)
     {
-        let viewModel = CurrencyPickerViewModel(view: currencyController)
-        currencyController.setViewModel(viewModel: viewModel)
+        let viewModel = CurrencyPickerViewModel(view: currencyPickerController)
+        currencyPickerController.setViewModel(viewModel: viewModel)
         
-        currencyController.currencySelected = { [weak self] index in
+        currencyPickerController.currencySelected = { [weak self] index in
             guard let strongSelf = self else { return }
 
             strongSelf.rootViewController.currencyIndexSelected(index: index)
