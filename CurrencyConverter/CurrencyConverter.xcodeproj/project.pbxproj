@@ -19,6 +19,8 @@
 		0EC6B54722FA19640062FF89 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC6B54622FA19640062FF89 /* APIClient.swift */; };
 		0EC6B54A22FA1B1D0062FF89 /* JSONDecoder+decodeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC6B54922FA1B1D0062FF89 /* JSONDecoder+decodeResponse.swift */; };
 		5C383BB89635312E56363311 /* Pods_CurrencyConverter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6EBDE87BC5E3AA6EA558916 /* Pods_CurrencyConverter.framework */; };
+		7D7A7AB022FD9F9900373F13 /* AppStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7A7AAF22FD9F9900373F13 /* AppStrings.swift */; };
+		7D7A7AB522FDC31200373F13 /* AppMessages.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7D7A7AB422FDC31200373F13 /* AppMessages.strings */; };
 		7DC9C78022FACAA8004727B1 /* CurrencyConverterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC9C77F22FACAA8004727B1 /* CurrencyConverterViewController.swift */; };
 		7DC9C78222FAD09D004727B1 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC9C78122FAD09D004727B1 /* AppCoordinator.swift */; };
 		7DC9C78422FAD727004727B1 /* CurrencyPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC9C78322FAD727004727B1 /* CurrencyPickerViewController.swift */; };
@@ -71,6 +73,8 @@
 		0EC6B54422FA17420062FF89 /* APIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
 		0EC6B54622FA19640062FF89 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		0EC6B54922FA1B1D0062FF89 /* JSONDecoder+decodeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSONDecoder+decodeResponse.swift"; sourceTree = "<group>"; };
+		7D7A7AAF22FD9F9900373F13 /* AppStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStrings.swift; sourceTree = "<group>"; };
+		7D7A7AB422FDC31200373F13 /* AppMessages.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = AppMessages.strings; sourceTree = "<group>"; };
 		7DC9C77F22FACAA8004727B1 /* CurrencyConverterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyConverterViewController.swift; sourceTree = "<group>"; };
 		7DC9C78122FAD09D004727B1 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		7DC9C78322FAD727004727B1 /* CurrencyPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyPickerViewController.swift; sourceTree = "<group>"; };
@@ -150,6 +154,7 @@
 		0E7915C522FA09D40053F7D8 /* CurrencyConverter */ = {
 			isa = PBXGroup;
 			children = (
+				7D7A7AAC22FD9C2200373F13 /* Resources */,
 				0EC6B54822FA1AE80062FF89 /* Extensions */,
 				7DC9C79322FB28B8004727B1 /* Utils */,
 				0EC6B53E22FA13540062FF89 /* Servicies */,
@@ -214,6 +219,14 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		7D7A7AAC22FD9C2200373F13 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				7D7A7AB422FDC31200373F13 /* AppMessages.strings */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		7DC9C77E22FACA85004727B1 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -248,6 +261,7 @@
 			children = (
 				7DC9C79422FB28D2004727B1 /* NumbersUtil.swift */,
 				7DC9C79B22FC2DCB004727B1 /* CurrencyConverterCalculator.swift */,
+				7D7A7AAF22FD9F9900373F13 /* AppStrings.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -377,6 +391,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0E7915D122FA09D50053F7D8 /* LaunchScreen.storyboard in Resources */,
+				7D7A7AB522FDC31200373F13 /* AppMessages.strings in Resources */,
 				0E7915CE22FA09D50053F7D8 /* Assets.xcassets in Resources */,
 				0E7915CC22FA09D40053F7D8 /* Main.storyboard in Resources */,
 			);
@@ -454,6 +469,7 @@
 				7DC9C7A022FC95FC004727B1 /* CurrencyFetcher.swift in Sources */,
 				7DC9C79522FB28D2004727B1 /* NumbersUtil.swift in Sources */,
 				7DC9C78722FB0487004727B1 /* CurrencyConverterViewModel.swift in Sources */,
+				7D7A7AB022FD9F9900373F13 /* AppStrings.swift in Sources */,
 				7DC9C78222FAD09D004727B1 /* AppCoordinator.swift in Sources */,
 				7DC9C78E22FB1411004727B1 /* CurrencyPickerViewProtocol.swift in Sources */,
 				7DC9C78422FAD727004727B1 /* CurrencyPickerViewController.swift in Sources */,

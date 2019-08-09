@@ -29,29 +29,14 @@ class CurrencyConverterViewModel: CurrencyConverterViewModelProtocol
         self.currencyConverter = CurrencyConverterCalculator()
         waitingForFromCurrecyToSet = false
         
-        viewData = CurrencyConverterViewData(topAmount: "", topCurrency: "currency", bottomAmount: "", bottomCurrency: "currency")
-        
-        // TODO: remove it and uses just the currencies from the service
-        createStubValues()
-        
-        currencyConverter.baseCurrency = "EUR"
+        viewData = CurrencyConverterViewData(topAmount: "",
+                                             topCurrency: AppStrings.currency.value,
+                                             bottomAmount: "",
+                                             bottomCurrency: AppStrings.currency.value)
+
         currencyConverter.currencies = currenciesRates
     }
-    
-    private func createStubValues()
-    {
-        self.currenciesRates = [
-            "EUR": 1,
-            "AUD": 1.566015,
-            "CAD": 1.560132,
-            "CHF": 1.154727,
-            "CNY": 7.827874,
-            "GBP": 0.882047,
-            "JPY": 132.360679,
-            "USD": 1.23396,
-        ]
-    }
-    
+
     func viewWillAppear()
     {
         loadData()
@@ -69,11 +54,12 @@ class CurrencyConverterViewModel: CurrencyConverterViewModelProtocol
         switch ratesResult
         {
         case .success(let model):
-            currencyConverter.baseCurrency = model.baseCurrency
             currencyConverter.currencies = model.rates
             currenciesRates = model.rates
         case .failure:
-            currencyViewController?.showErrorForDataFailure(title: "Error", message: "Service not available, check internet connection", buttonLabel: "Retry")
+            currencyViewController?.showErrorForDataFailure(title: AppStrings.error.value,
+                                                            message: AppStrings.serviceUnavailable.value,
+                                                            buttonLabel: AppStrings.retry.value)
             break
         }
     }
@@ -119,12 +105,16 @@ class CurrencyConverterViewModel: CurrencyConverterViewModelProtocol
     func convertButtonPressed(importToConvert: String)
     {
         guard let number = NumbersUtil.convertStringToDouble(stringNumber: importToConvert) else {
-            currencyViewController?.showError(title: "Error", message: "value inserted is not in valid format", buttonLabel: "Close")
+            currencyViewController?.showError(title: AppStrings.error.value,
+                                              message: AppStrings.valueFormatError.value,
+                                              buttonLabel: AppStrings.close.value)
             return
         }
         
         guard let currencyFrom = currencyFrom, let currencyTo = currencyTo else {
-            currencyViewController?.showError(title: "Error", message: "Please, select both currency to convert value", buttonLabel: "Close")
+            currencyViewController?.showError(title: AppStrings.error.value,
+                                              message: AppStrings.selectBothCurrency.value,
+                                              buttonLabel: AppStrings.close.value)
             return
         }
         
@@ -133,7 +123,9 @@ class CurrencyConverterViewModel: CurrencyConverterViewModelProtocol
                                                                     valueToConvert: number)
         
         guard let stringConverted = NumbersUtil.converDoubleToFormattedString(importInserted: valueConverted) else {
-            currencyViewController?.showError(title: "Error", message: "It was not possible to convert", buttonLabel: "Close")
+            currencyViewController?.showError(title: AppStrings.error.value,
+                                              message: AppStrings.notPossibleToConver.value,
+                                              buttonLabel: AppStrings.close.value)
             return
         }
         

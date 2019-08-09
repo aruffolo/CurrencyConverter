@@ -11,8 +11,7 @@ import Foundation
 struct CurrencyConverterCalculator
 {
     var currencies: [String: Double]!
-    var baseCurrency: String!
-    
+
     func convertCurrencyValue(fromCur: String, toCur: String, valueToConvert: Double) -> Double
     {
         guard let baseFromRate = currencies[fromCur], let baseToRate = currencies[toCur]
