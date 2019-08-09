@@ -9,26 +9,141 @@
 import XCTest
 @testable import CurrencyConverter
 
-class CurrencyConverterTests: XCTestCase {
+class CurrencyConverterTests: XCTestCase
+{
+    let eurCur: String = "EUR"
+    let usdCur: String = "USD"
 
-    override func setUp() {
+    override func setUp()
+    {
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
 
-    override func tearDown() {
+    override func tearDown()
+    {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testConversion()
+    {
+        let viewController = CurrencyViewControllerMock()
+        let currencyFetcher = CurrencyFetcherMock()
+
+        let currencyViewModel = CurrencyConverterViewModel(currencyViewController: viewController, ratesFetcher: currencyFetcher)
+        viewController.viewModel = currencyViewModel
+        viewController.callLoadDataForViewModel()
+
+        currencyViewModel.selectCurrencyTopButtonPressed()
+        currencyViewModel.currencyIndexSelected(index: 4)
+        currencyViewModel.selectCurrencyBottomButtonPressed()
+        currencyViewModel.currencyIndexSelected(index: 7)
+
+        currencyViewModel.convertButtonPressed(importToConvert: "1")
+        XCTAssert(viewController.bottomAmount == "1.23"
+            && viewController.bottomCurrency == usdCur
+            && viewController.topCurrency == eurCur
+            && viewController.topAmount == "1")
     }
 
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    func testFormatError()
+    {
+        let viewController = CurrencyViewControllerMock()
+        let currencyFetcher = CurrencyFetcherMock()
+
+        let currencyViewModel = CurrencyConverterViewModel(currencyViewController: viewController, ratesFetcher: currencyFetcher)
+        viewController.viewModel = currencyViewModel
+        viewController.callLoadDataForViewModel()
+
+        currencyViewModel.selectCurrencyTopButtonPressed()
+        currencyViewModel.currencyIndexSelected(index: 4)
+        currencyViewModel.selectCurrencyBottomButtonPressed()
+        currencyViewModel.currencyIndexSelected(index: 7)
+
+        currencyViewModel.convertButtonPressed(importToConvert: "abc")
+        // this means that the conversion has not taken place
+        XCTAssert(viewController.bottomAmount == ""
+            && viewController.topCurrency == eurCur
+            && viewController.bottomCurrency == usdCur
+            && viewController.topAmount == "")
     }
 
+    func testTopCurrencyNotSelected()
+    {
+        let viewController = CurrencyViewControllerMock()
+        let currencyFetcher = CurrencyFetcherMock()
+
+        let currencyViewModel = CurrencyConverterViewModel(currencyViewController: viewController, ratesFetcher: currencyFetcher)
+        viewController.viewModel = currencyViewModel
+        viewController.callLoadDataForViewModel()
+
+        currencyViewModel.selectCurrencyBottomButtonPressed()
+        currencyViewModel.currencyIndexSelected(index: 7)
+
+        currencyViewModel.convertButtonPressed(importToConvert: "1")
+        // this means that the conversion has not taken place
+        XCTAssert(viewController.bottomAmount == ""
+            && viewController.bottomCurrency == usdCur
+            && viewController.topCurrency == AppStrings.currency.value)
+    }
+
+    func testBottomCurrencyNotSelected()
+    {
+        let viewController = CurrencyViewControllerMock()
+        let currencyFetcher = CurrencyFetcherMock()
+
+        let currencyViewModel = CurrencyConverterViewModel(currencyViewController: viewController, ratesFetcher: currencyFetcher)
+        viewController.viewModel = currencyViewModel
+        viewController.callLoadDataForViewModel()
+
+        currencyViewModel.selectCurrencyTopButtonPressed()
+        currencyViewModel.currencyIndexSelected(index: 4)
+
+        currencyViewModel.convertButtonPressed(importToConvert: "1")
+        // this means that the conversion has not taken place
+        XCTAssert(viewController.bottomAmount == ""
+            && viewController.bottomCurrency == AppStrings.currency.value
+            && viewController.topCurrency == eurCur)
+    }
+
+    func testBothCurrenciesNotSelected()
+    {
+        let viewController = CurrencyViewControllerMock()
+        let currencyFetcher = CurrencyFetcherMock()
+
+        let currencyViewModel = CurrencyConverterViewModel(currencyViewController: viewController, ratesFetcher: currencyFetcher)
+        viewController.viewModel = currencyViewModel
+        viewController.callLoadDataForViewModel()
+
+        currencyViewModel.convertButtonPressed(importToConvert: "1")
+        // this means that the conversion has not taken place
+        XCTAssert(viewController.bottomAmount == nil
+            && viewController.bottomCurrency == nil
+            && viewController.topCurrency == nil)
+    }
+
+    func testTopImportChanged()
+    {
+        let viewController = CurrencyViewControllerMock()
+        let currencyFetcher = CurrencyFetcherMock()
+
+        let currencyViewModel = CurrencyConverterViewModel(currencyViewController: viewController, ratesFetcher: currencyFetcher)
+        viewController.viewModel = currencyViewModel
+        viewController.callLoadDataForViewModel()
+
+        currencyViewModel.topAmountChanged(amount: "1234")
+
+        XCTAssert(viewController.topAmount == "1234")
+    }
+
+    func testFetchDataError()
+    {
+        let viewController = CurrencyViewControllerMock()
+        let currencyFetcher = CurrencyFetcherFailMock()
+
+        let currencyViewModel = CurrencyConverterViewModel(currencyViewController: viewController, ratesFetcher: currencyFetcher)
+        viewController.viewModel = currencyViewModel
+        viewController.callLoadDataForViewModel()
+
+        XCTAssert(viewController.errorInFetchingData)
+    }
 }
