@@ -21,8 +21,8 @@ enum RatesFetchError: Error
 
 struct CurrencyFetcher: CurrencyFetcherProtocol
 {
-    let cacheDuration: Double = 24
-
+    let cacheHoursDuration: Double = 24
+    
     func latestCurrenciesRates(completion: @escaping (_ result: Result<CurrencyDataModel, RatesFetchError>) -> Void)
     {
         let readCache = cacheShouldBeRead()
@@ -60,7 +60,7 @@ struct CurrencyFetcher: CurrencyFetcherProtocol
             }
         })
     }
-
+    
     private func cacheShouldBeRead() -> (CurrencyDataModel?, Bool)
     {
         let tuple = cacheShouldBeWritten()
@@ -70,12 +70,13 @@ struct CurrencyFetcher: CurrencyFetcherProtocol
     private func cacheShouldBeWritten() -> (CurrencyDataModel?, Bool)
     {
         let currentDate = Date()
+        let secondsInHour: Double = 3600
         if let rates = ConsistencyClient.getRates() {
             let cacheDate = rates.updateTime
             let difference: TimeInterval = currentDate.timeIntervalSince(cacheDate)
-            let hoursDifference = difference / 3600
+            let hoursDifference = difference / secondsInHour
             
-            return (rates, hoursDifference > cacheDuration)
+            return (rates, hoursDifference > cacheHoursDuration)
         }
         
         return (nil, true)
