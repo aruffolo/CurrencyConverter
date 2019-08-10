@@ -10,7 +10,7 @@ import Foundation
 import Alamofire
 @testable import CurrencyConverter
 
-class ApiMock: RestProtocol
+class RestMock: RestProtocol
 {
     var failing: Bool
     var responseInvalid: Bool
@@ -21,8 +21,8 @@ class ApiMock: RestProtocol
         self.responseInvalid = responseInvalid
     }
 
-    func latestCurrenciesRates(completion: @escaping (AFResult<ExchangeRates>) -> Void) {
-
+    func latestCurrenciesRates(completion: @escaping (AFResult<ExchangeRates>) -> Void)
+    {
         if failing
         {
             completion(Result.failure(RatesFetchError.genericError))

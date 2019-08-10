@@ -83,7 +83,7 @@ class CurrencyApiTests: XCTestCase
 
     func testServiceFailing()
     {
-        let api = ApiMock(failing: true, responseInvalid: false)
+        let api = RestMock(failing: true, responseInvalid: false)
         let consistencyService = ConsistencyServiceMock(shouldHaveCache: false)
         let fetcher = CurrencyFetcher(consistencyService: consistencyService, apiProtocol: api)
 
@@ -112,7 +112,7 @@ class CurrencyApiTests: XCTestCase
 
     func testServiceFailingButCachePresent()
     {
-        let api = ApiMock(failing: true, responseInvalid: false)
+        let api = RestMock(failing: true, responseInvalid: false)
         let consistencyService = ConsistencyServiceMock(shouldHaveCache: true)
         let fetcher = CurrencyFetcher(consistencyService: consistencyService, apiProtocol: api)
 
@@ -140,7 +140,7 @@ class CurrencyApiTests: XCTestCase
 
     func testResponseInvalid()
     {
-        let api = ApiMock(failing: false, responseInvalid: true)
+        let api = RestMock(failing: false, responseInvalid: true)
         let consistencyService = ConsistencyServiceMock(shouldHaveCache: false)
         let fetcher = CurrencyFetcher(consistencyService: consistencyService, apiProtocol: api)
 

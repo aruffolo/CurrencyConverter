@@ -18,9 +18,9 @@
 		0EC4CE3622FE4804008BEA7D /* CurrencyPickerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC4CE3522FE4804008BEA7D /* CurrencyPickerTests.swift */; };
 		0EC4CE3822FE4852008BEA7D /* CurrencyPickerViewControllerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC4CE3722FE4852008BEA7D /* CurrencyPickerViewControllerMock.swift */; };
 		0EC4CE3A22FEE4CD008BEA7D /* ConsistencyServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC4CE3922FEE4CD008BEA7D /* ConsistencyServiceMock.swift */; };
-		0EC4CE3C22FEE58B008BEA7D /* CurrencyApiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC4CE3B22FEE58B008BEA7D /* CurrencyApiTests.swift */; };
-		0EC4CE3E22FF0B16008BEA7D /* ApiMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC4CE3D22FF0B16008BEA7D /* ApiMock.swift */; };
+		0EC4CE3C22FEE58B008BEA7D /* CurrencyRestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC4CE3B22FEE58B008BEA7D /* CurrencyRestTests.swift */; };
 		0EC4CE4022FF368A008BEA7D /* RestClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC4CE3F22FF368A008BEA7D /* RestClient.swift */; };
+		0EC4CE4222FF37E6008BEA7D /* RestMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC4CE4122FF37E6008BEA7D /* RestMock.swift */; };
 		0EC6B54122FA14C00062FF89 /* ExchangeRatesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC6B54022FA14C00062FF89 /* ExchangeRatesResponse.swift */; };
 		0EC6B54322FA16290062FF89 /* RestRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC6B54222FA16290062FF89 /* RestRouter.swift */; };
 		0EC6B54522FA17420062FF89 /* RestConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC6B54422FA17420062FF89 /* RestConstants.swift */; };
@@ -80,9 +80,9 @@
 		0EC4CE3522FE4804008BEA7D /* CurrencyPickerTests.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = CurrencyPickerTests.swift; sourceTree = "<group>"; tabWidth = 4; };
 		0EC4CE3722FE4852008BEA7D /* CurrencyPickerViewControllerMock.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = CurrencyPickerViewControllerMock.swift; sourceTree = "<group>"; tabWidth = 4; };
 		0EC4CE3922FEE4CD008BEA7D /* ConsistencyServiceMock.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = ConsistencyServiceMock.swift; sourceTree = "<group>"; tabWidth = 4; };
-		0EC4CE3B22FEE58B008BEA7D /* CurrencyApiTests.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = CurrencyApiTests.swift; sourceTree = "<group>"; tabWidth = 4; };
-		0EC4CE3D22FF0B16008BEA7D /* ApiMock.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = ApiMock.swift; sourceTree = "<group>"; tabWidth = 4; };
+		0EC4CE3B22FEE58B008BEA7D /* CurrencyRestTests.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = CurrencyRestTests.swift; sourceTree = "<group>"; tabWidth = 4; };
 		0EC4CE3F22FF368A008BEA7D /* RestClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestClient.swift; sourceTree = "<group>"; };
+		0EC4CE4122FF37E6008BEA7D /* RestMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestMock.swift; sourceTree = "<group>"; };
 		0EC6B54022FA14C00062FF89 /* ExchangeRatesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRatesResponse.swift; sourceTree = "<group>"; };
 		0EC6B54222FA16290062FF89 /* RestRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestRouter.swift; sourceTree = "<group>"; };
 		0EC6B54422FA17420062FF89 /* RestConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestConstants.swift; sourceTree = "<group>"; };
@@ -193,7 +193,7 @@
 				0E7915DB22FA09D50053F7D8 /* CurrencyConverterTests.swift */,
 				0E7915DD22FA09D50053F7D8 /* Info.plist */,
 				0EC4CE3522FE4804008BEA7D /* CurrencyPickerTests.swift */,
-				0EC4CE3B22FEE58B008BEA7D /* CurrencyApiTests.swift */,
+				0EC4CE3B22FEE58B008BEA7D /* CurrencyRestTests.swift */,
 			);
 			path = CurrencyConverterTests;
 			sourceTree = "<group>";
@@ -210,11 +210,11 @@
 		0EC4CE3022FE095E008BEA7D /* Mock */ = {
 			isa = PBXGroup;
 			children = (
+				0EC4CE4122FF37E6008BEA7D /* RestMock.swift */,
 				0EC4CE3122FE0987008BEA7D /* CurrencyViewControllerMock.swift */,
 				0EC4CE3322FE0A87008BEA7D /* CurrencyFetcherMock.swift */,
 				0EC4CE3722FE4852008BEA7D /* CurrencyPickerViewControllerMock.swift */,
 				0EC4CE3922FEE4CD008BEA7D /* ConsistencyServiceMock.swift */,
-				0EC4CE3D22FF0B16008BEA7D /* ApiMock.swift */,
 			);
 			path = Mock;
 			sourceTree = "<group>";
@@ -519,8 +519,8 @@
 				0EC4CE3222FE0987008BEA7D /* CurrencyViewControllerMock.swift in Sources */,
 				0EC4CE3422FE0A87008BEA7D /* CurrencyFetcherMock.swift in Sources */,
 				0E7915DC22FA09D50053F7D8 /* CurrencyConverterTests.swift in Sources */,
-				0EC4CE3E22FF0B16008BEA7D /* ApiMock.swift in Sources */,
-				0EC4CE3C22FEE58B008BEA7D /* CurrencyApiTests.swift in Sources */,
+				0EC4CE4222FF37E6008BEA7D /* RestMock.swift in Sources */,
+				0EC4CE3C22FEE58B008BEA7D /* CurrencyRestTests.swift in Sources */,
 				0EC4CE3A22FEE4CD008BEA7D /* ConsistencyServiceMock.swift in Sources */,
 				0EC4CE3822FE4852008BEA7D /* CurrencyPickerViewControllerMock.swift in Sources */,
 			);
