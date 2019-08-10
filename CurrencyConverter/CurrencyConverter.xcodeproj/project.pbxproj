@@ -15,6 +15,8 @@
 		0E7915E722FA09D50053F7D8 /* CurrencyConverterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7915E622FA09D50053F7D8 /* CurrencyConverterUITests.swift */; };
 		0EC4CE3222FE0987008BEA7D /* CurrencyViewControllerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC4CE3122FE0987008BEA7D /* CurrencyViewControllerMock.swift */; };
 		0EC4CE3422FE0A87008BEA7D /* CurrencyFetcherMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC4CE3322FE0A87008BEA7D /* CurrencyFetcherMock.swift */; };
+		0EC4CE3622FE4804008BEA7D /* CurrencyPickerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC4CE3522FE4804008BEA7D /* CurrencyPickerTests.swift */; };
+		0EC4CE3822FE4852008BEA7D /* CurrencyPickerViewControllerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC4CE3722FE4852008BEA7D /* CurrencyPickerViewControllerMock.swift */; };
 		0EC6B54122FA14C00062FF89 /* ExchangeRatesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC6B54022FA14C00062FF89 /* ExchangeRatesResponse.swift */; };
 		0EC6B54322FA16290062FF89 /* ApiRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC6B54222FA16290062FF89 /* ApiRouter.swift */; };
 		0EC6B54522FA17420062FF89 /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC6B54422FA17420062FF89 /* APIConstants.swift */; };
@@ -72,6 +74,8 @@
 		0E7915E822FA09D50053F7D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0EC4CE3122FE0987008BEA7D /* CurrencyViewControllerMock.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = CurrencyViewControllerMock.swift; sourceTree = "<group>"; tabWidth = 4; };
 		0EC4CE3322FE0A87008BEA7D /* CurrencyFetcherMock.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = CurrencyFetcherMock.swift; sourceTree = "<group>"; tabWidth = 4; };
+		0EC4CE3522FE4804008BEA7D /* CurrencyPickerTests.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = CurrencyPickerTests.swift; sourceTree = "<group>"; tabWidth = 4; };
+		0EC4CE3722FE4852008BEA7D /* CurrencyPickerViewControllerMock.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = CurrencyPickerViewControllerMock.swift; sourceTree = "<group>"; tabWidth = 4; };
 		0EC6B54022FA14C00062FF89 /* ExchangeRatesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRatesResponse.swift; sourceTree = "<group>"; };
 		0EC6B54222FA16290062FF89 /* ApiRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiRouter.swift; sourceTree = "<group>"; };
 		0EC6B54422FA17420062FF89 /* APIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
@@ -182,6 +186,7 @@
 				0EC4CE3022FE095E008BEA7D /* Mock */,
 				0E7915DB22FA09D50053F7D8 /* CurrencyConverterTests.swift */,
 				0E7915DD22FA09D50053F7D8 /* Info.plist */,
+				0EC4CE3522FE4804008BEA7D /* CurrencyPickerTests.swift */,
 			);
 			path = CurrencyConverterTests;
 			sourceTree = "<group>";
@@ -200,6 +205,7 @@
 			children = (
 				0EC4CE3122FE0987008BEA7D /* CurrencyViewControllerMock.swift */,
 				0EC4CE3322FE0A87008BEA7D /* CurrencyFetcherMock.swift */,
+				0EC4CE3722FE4852008BEA7D /* CurrencyPickerViewControllerMock.swift */,
 			);
 			path = Mock;
 			sourceTree = "<group>";
@@ -500,9 +506,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0EC4CE3622FE4804008BEA7D /* CurrencyPickerTests.swift in Sources */,
 				0EC4CE3222FE0987008BEA7D /* CurrencyViewControllerMock.swift in Sources */,
 				0EC4CE3422FE0A87008BEA7D /* CurrencyFetcherMock.swift in Sources */,
 				0E7915DC22FA09D50053F7D8 /* CurrencyConverterTests.swift in Sources */,
+				0EC4CE3822FE4852008BEA7D /* CurrencyPickerViewControllerMock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
