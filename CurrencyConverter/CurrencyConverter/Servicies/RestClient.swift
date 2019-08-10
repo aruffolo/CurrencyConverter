@@ -8,16 +8,16 @@
 
 import Alamofire
 
-protocol APIProtocol
+protocol RestProtocol
 {
   func latestCurrenciesRates(completion: @escaping (_ result: AFResult<ExchangeRates>) -> Void)
 }
 
-class APIClient: APIProtocol
+class RestClient: RestProtocol
 {
   func latestCurrenciesRates(completion: @escaping (_ result: AFResult<ExchangeRates>) -> Void)
   {
-    request(ApiRouter.latest, completion: completion)
+    request(RestRouter.latest, completion: completion)
   }
 
   private func request<T: Codable>(_ urlConvertible: URLRequestConvertible,

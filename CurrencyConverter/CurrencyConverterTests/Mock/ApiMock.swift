@@ -10,7 +10,7 @@ import Foundation
 import Alamofire
 @testable import CurrencyConverter
 
-class ApiMock: APIProtocol
+class ApiMock: RestProtocol
 {
     var failing: Bool
     var responseInvalid: Bool

@@ -20,12 +20,12 @@ fileprivate enum EndPoints: String
   case latest = "/latest"
 }
 
-fileprivate struct APIParameterKey
+fileprivate struct RestParameterKey
 {
   static let accessKey = "access_key"
 }
 
-public enum ApiRouter: URLRequestConvertible
+public enum RestRouter: URLRequestConvertible
 {
   case latest
 
@@ -52,7 +52,7 @@ public enum ApiRouter: URLRequestConvertible
     switch self
     {
     case .latest:
-      return [APIParameterKey.accessKey: Constants.apiKey]
+      return [RestParameterKey.accessKey: Constants.apiKey]
     }
   }
 

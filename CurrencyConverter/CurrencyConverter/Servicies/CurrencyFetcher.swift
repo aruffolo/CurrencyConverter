@@ -22,10 +22,10 @@ enum RatesFetchError: Error
 struct CurrencyFetcher: CurrencyFetcherProtocol
 {
     let consistencyService: ConsistencyProtocol
-    let apiProtocol: APIProtocol
+    let apiProtocol: RestProtocol
     let cacheHoursDuration: Double = 24
 
-    init(consistencyService: ConsistencyProtocol, apiProtocol: APIProtocol) {
+    init(consistencyService: ConsistencyProtocol, apiProtocol: RestProtocol) {
         self.consistencyService = consistencyService
         self.apiProtocol = apiProtocol
     }

@@ -23,7 +23,7 @@ class CurrencyApiTests: XCTestCase
 
     func testRealService()
     {
-        let api = APIClient()
+        let api = RestClient()
         let consistencyService = ConsistencyServiceMock(shouldHaveCache: false)
         let fetcher = CurrencyFetcher(consistencyService: consistencyService, apiProtocol: api)
 
@@ -53,7 +53,7 @@ class CurrencyApiTests: XCTestCase
 
     func testDataFromCache()
     {
-        let api = APIClient()
+        let api = RestClient()
         let consistencyService = ConsistencyServiceMock(shouldHaveCache: true)
         let fetcher = CurrencyFetcher(consistencyService: consistencyService, apiProtocol: api)
 

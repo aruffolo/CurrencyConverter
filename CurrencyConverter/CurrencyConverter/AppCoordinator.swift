@@ -21,7 +21,7 @@ class AppCoordinator
     
     private func configureRootController()
     {
-        let apiProtocol = APIClient()
+        let apiProtocol = RestClient()
         let consistency = ConsistencyClient()
         let ratesFetcher = CurrencyFetcher(consistencyService: consistency, apiProtocol: apiProtocol)
         let currencyViewModel = CurrencyConverterViewModel(currencyViewController: rootViewController,
