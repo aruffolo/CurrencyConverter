@@ -8,11 +8,17 @@
 
 import Foundation
 
-struct ConsistencyClient
+protocol ConsistencyProtocol
 {
-    private static let ratesKey: String = "ratesUserKey"
+    func setRates(currencyModel: CurrencyDataModel)
+    func getRates() -> CurrencyDataModel?
+}
+
+struct ConsistencyClient: ConsistencyProtocol
+{
+    private let ratesKey: String = "ratesUserKey"
     
-    static func setRates(currencyModel: CurrencyDataModel)
+    func setRates(currencyModel: CurrencyDataModel)
     {
         let encoder = JSONEncoder()
         if let encoded = try? encoder.encode(currencyModel) {
@@ -21,7 +27,7 @@ struct ConsistencyClient
         }
     }
     
-    static func getRates() -> CurrencyDataModel?
+    func getRates() -> CurrencyDataModel?
     {
         let defaults = UserDefaults.standard
         if let dataModel = defaults.object(forKey: ratesKey) as? Data {

@@ -8,25 +8,30 @@
 
 import Alamofire
 
-class APIClient
+protocol APIProtocol
 {
-  static func latestCurrenciesRates(completion: @escaping (_ result: AFResult<ExchangeRates>) -> Void)
+  func latestCurrenciesRates(completion: @escaping (_ result: AFResult<ExchangeRates>) -> Void)
+}
+
+class APIClient: APIProtocol
+{
+  func latestCurrenciesRates(completion: @escaping (_ result: AFResult<ExchangeRates>) -> Void)
   {
     request(ApiRouter.latest, completion: completion)
   }
 
-  private static func request<T: Codable>(_ urlConvertible: URLRequestConvertible,
+  private func request<T: Codable>(_ urlConvertible: URLRequestConvertible,
                                            completion: @escaping (AFResult<T>) -> Void)
   {
-    AF.request(urlConvertible).responseData(completionHandler:{ (dataResponse: DataResponse<Data>) in
-      printResponse(dataResponse)
+    AF.request(urlConvertible).responseData(completionHandler:{ [weak self] (dataResponse: DataResponse<Data>) in
+      self?.printResponse(dataResponse)
       let decoder = JSONDecoder()
       let response: AFResult<T> = decoder.decodeResponse(from: dataResponse)
       completion(response)
     })
   }
 
-  private static func printResponse(_ response: DataResponse<Data>)
+  private func printResponse(_ response: DataResponse<Data>)
   {
     guard let value = try? response.result.get(),
       let string = NSString(data: value, encoding: String.Encoding.utf8.rawValue)

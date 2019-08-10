@@ -16,13 +16,19 @@ protocol CurrencyFetcherProtocol
 enum RatesFetchError: Error
 {
     case genericError
-    case consinstencyError
     case responseInvalidError
 }
 
 struct CurrencyFetcher: CurrencyFetcherProtocol
 {
+    let consistencyService: ConsistencyProtocol
+    let apiProtocol: APIProtocol
     let cacheHoursDuration: Double = 24
+
+    init(consistencyService: ConsistencyProtocol, apiProtocol: APIProtocol) {
+        self.consistencyService = consistencyService
+        self.apiProtocol = apiProtocol
+    }
 
     func latestCurrenciesRates(completion: @escaping (_ result: Result<CurrencyDataModel, RatesFetchError>) -> Void)
     {
@@ -38,10 +44,11 @@ struct CurrencyFetcher: CurrencyFetcherProtocol
         }
     }
 
-    private func loadFromServiceOrTryFromCache(cache: CurrencyDataModel?, completion: @escaping (_ result: Result<CurrencyDataModel, RatesFetchError>) -> Void)
+    private func loadFromServiceOrTryFromCache(cache: CurrencyDataModel?,
+                                               completion: @escaping (_ result: Result<CurrencyDataModel, RatesFetchError>) -> Void)
     {
         // if this fails then try to use the cached data
-        APIClient.latestCurrenciesRates(completion: { result  in
+        apiProtocol.latestCurrenciesRates(completion: { result  in
             switch result
             {
             case .success(let response):
@@ -59,17 +66,19 @@ struct CurrencyFetcher: CurrencyFetcherProtocol
                 if let cache = cache
                 {
                     completion(Result.success(cache))
+                    return
                 }
                 completion(Result.failure(.genericError))
             }
         })
     }
 
-    private func handleValidResponse(_ response: ExchangeRates, completion: @escaping (_ result: Result<CurrencyDataModel, RatesFetchError>) -> Void)
+    private func handleValidResponse(_ response: ExchangeRates,
+                                     completion: @escaping (_ result: Result<CurrencyDataModel, RatesFetchError>) -> Void)
     {
         let model = self.createDataModelFromResponse(response: response)
         // If I'm here it means that cache is invalid or not saved yet. I must save it
-        ConsistencyClient.setRates(currencyModel: model)
+        consistencyService.setRates(currencyModel: model)
         completion(Result.success(model))
     }
 
@@ -88,7 +97,7 @@ struct CurrencyFetcher: CurrencyFetcherProtocol
     {
         let currentDate = Date()
         let secondsInHour: Double = 3600
-        if let rates = ConsistencyClient.getRates() {
+        if let rates = consistencyService.getRates() {
             let cacheDate = rates.updateTime
             let difference: TimeInterval = currentDate.timeIntervalSince(cacheDate)
             let hoursDifference = difference / secondsInHour
