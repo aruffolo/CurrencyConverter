@@ -17,6 +17,7 @@ enum RatesFetchError: Error
 {
     case genericError
     case consinstencyError
+    case responseInvalidError
 }
 
 struct CurrencyFetcher: CurrencyFetcherProtocol
@@ -40,15 +41,19 @@ struct CurrencyFetcher: CurrencyFetcherProtocol
     private func loadFromServiceOrTryFromCache(cache: CurrencyDataModel?, completion: @escaping (_ result: Result<CurrencyDataModel, RatesFetchError>) -> Void)
     {
         // if this fails then try to use the cached data
-        APIClient.latestCurrenciesRates(completion: { result in
+        APIClient.latestCurrenciesRates(completion: { result  in
             switch result
             {
             case .success(let response):
-                let model = self.createDataModelFromResponse(response: response)
-                // If I'm here it means that cache is invalid or not saved yet. I must save it
-                ConsistencyClient.setRates(currencyModel: model)
-                completion(Result.success(model))
-                break
+                if self.responseIsInvalid(response: response)
+                {
+                    completion(Result.failure(.responseInvalidError))
+                }
+                else
+                {
+                    self.handleValidResponse(response, completion: completion)
+                }
+
             case .failure:
                 // If the service fails I try to use the cache if I have it
                 if let cache = cache
@@ -56,9 +61,21 @@ struct CurrencyFetcher: CurrencyFetcherProtocol
                     completion(Result.success(cache))
                 }
                 completion(Result.failure(.genericError))
-                break
             }
         })
+    }
+
+    private func handleValidResponse(_ response: ExchangeRates, completion: @escaping (_ result: Result<CurrencyDataModel, RatesFetchError>) -> Void)
+    {
+        let model = self.createDataModelFromResponse(response: response)
+        // If I'm here it means that cache is invalid or not saved yet. I must save it
+        ConsistencyClient.setRates(currencyModel: model)
+        completion(Result.success(model))
+    }
+
+    private func responseIsInvalid(response: ExchangeRates) -> Bool
+    {
+        return !response.success || response.rates.isEmpty || response.base.isEmpty
     }
 
     private func cacheShouldBeRead() -> (CurrencyDataModel?, Bool)
