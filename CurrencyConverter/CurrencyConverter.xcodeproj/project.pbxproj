@@ -89,7 +89,7 @@
 		0EC6B54922FA1B1D0062FF89 /* JSONDecoder+decodeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSONDecoder+decodeResponse.swift"; sourceTree = "<group>"; };
 		7D7A7AAF22FD9F9900373F13 /* AppStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStrings.swift; sourceTree = "<group>"; };
 		7D7A7AB422FDC31200373F13 /* AppMessages.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = AppMessages.strings; sourceTree = "<group>"; };
-		7DC9C77F22FACAA8004727B1 /* CurrencyConverterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyConverterViewController.swift; sourceTree = "<group>"; };
+		7DC9C77F22FACAA8004727B1 /* CurrencyConverterViewController.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = CurrencyConverterViewController.swift; sourceTree = "<group>"; tabWidth = 4; };
 		7DC9C78122FAD09D004727B1 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		7DC9C78322FAD727004727B1 /* CurrencyPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyPickerViewController.swift; sourceTree = "<group>"; };
 		7DC9C78622FB0487004727B1 /* CurrencyConverterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyConverterViewModel.swift; sourceTree = "<group>"; };
