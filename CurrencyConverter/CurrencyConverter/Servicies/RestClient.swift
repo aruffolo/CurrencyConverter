@@ -19,7 +19,7 @@ class RestClient: RestProtocol
   {
     request(RestRouter.latest, completion: completion)
   }
-
+  
   private func request<T: Codable>(_ urlConvertible: URLRequestConvertible,
                                    completion: @escaping (AFResult<T>) -> Void)
   {
@@ -30,13 +30,13 @@ class RestClient: RestProtocol
       completion(response)
     })
   }
-
+  
   private func printResponse(_ response: DataResponse<Data>)
   {
     guard let value = try? response.result.get(),
       let string = NSString(data: value, encoding: String.Encoding.utf8.rawValue)
       else { return }
-
+    
     print("response is:\n \(string)")
   }
 }

@@ -11,6 +11,6 @@ import UIKit
 
 protocol CurrencyPickerViewProtocol where Self: UIViewController
 {
-    func closeView()
-    func closeWithIndexSelected(index: Int)
+  func closeView()
+  func closeWithIndexSelected(index: Int)
 }

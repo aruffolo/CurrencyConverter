@@ -18,43 +18,43 @@ class CurrencyConverterViewModel: CurrencyConverterViewModelProtocol
 {
   private weak var currencyViewController: CurrencyConverterViewProtocol?
   private var currencyConverter: CurrencyConverterCalculator
-
+  
   private var currenciesRates: [String: Double] = [:]
   private var waitingForFromCurrecyToSet: Bool
-
+  
   private var currencyFrom: String?
   private var currencyTo: String?
-
+  
   var viewData: CurrencyConverterViewData
   let ratesFetcher: CurrencyFetcherProtocol
-
+  
   init(currencyViewController: CurrencyConverterViewProtocol, ratesFetcher: CurrencyFetcherProtocol)
   {
     self.currencyViewController = currencyViewController
     self.ratesFetcher = ratesFetcher
     self.currencyConverter = CurrencyConverterCalculator()
     waitingForFromCurrecyToSet = false
-
+    
     viewData = CurrencyConverterViewData(topAmount: "",
                                          topCurrency: AppStrings.currency.value,
                                          bottomAmount: "",
                                          bottomCurrency: AppStrings.currency.value)
-
+    
     currencyConverter.currencies = currenciesRates
   }
-
+  
   func viewWillAppear()
   {
     loadData()
   }
-
+  
   func loadData()
   {
     ratesFetcher.latestCurrenciesRates(completion: { [weak self] dataModel in
       self?.receiveRates(ratesResult: dataModel)
     })
   }
-
+  
   func receiveRates(ratesResult: Result<CurrencyDataModel, RatesFetchError>)
   {
     switch ratesResult
@@ -68,29 +68,29 @@ class CurrencyConverterViewModel: CurrencyConverterViewModelProtocol
                                                       buttonLabel: AppStrings.retry.value)
     }
   }
-
+  
   func topAmountChanged(amount: String)
   {
     viewData.topAmount = amount
     currencyViewController?.updateView(viewData: viewData)
   }
-
+  
   func selectCurrencyTopButtonPressed()
   {
     waitingForFromCurrecyToSet = true
     currencyViewController?.presentCurrencyPicker(currencies: currenciesRates.keys.sorted())
   }
-
+  
   func selectCurrencyBottomButtonPressed()
   {
     waitingForFromCurrecyToSet = false
     currencyViewController?.presentCurrencyPicker(currencies: currenciesRates.keys.sorted())
   }
-
+  
   func currencyIndexSelected(index: Int)
   {
     let selected = currenciesRates.keys.sorted()[index]
-
+    
     if waitingForFromCurrecyToSet
     {
       currencyFrom = selected
@@ -101,16 +101,16 @@ class CurrencyConverterViewModel: CurrencyConverterViewModelProtocol
       currencyTo = selected
       viewData.bottomCurrency = selected
     }
-
+    
     // I may want to reset the amount on the bottom
     viewData.bottomAmount = ""
     currencyViewController?.updateView(viewData: viewData)
   }
-
+  
   func convertButtonPressed(importToConvert: String)
   {
     let result = checkForConversionError(importToConvert: importToConvert)
-
+    
     switch result
     {
     case .success(let viewData):
@@ -120,7 +120,7 @@ class CurrencyConverterViewModel: CurrencyConverterViewModelProtocol
       showAlertFromError(error: error)
     }
   }
-
+  
   private func showAlertFromError(error: ConverterError)
   {
     switch error {
@@ -128,33 +128,33 @@ class CurrencyConverterViewModel: CurrencyConverterViewModelProtocol
       currencyViewController?.showError(title: AppStrings.error.value, message: AppStrings.valueFormatError.value,
                                         buttonLabel: AppStrings.close.value)
     case .bothCurrencyNotSelected:
-        currencyViewController?.showError(title: AppStrings.error.value, message: AppStrings.selectBothCurrency.value,
-                                          buttonLabel: AppStrings.close.value)
+      currencyViewController?.showError(title: AppStrings.error.value, message: AppStrings.selectBothCurrency.value,
+                                        buttonLabel: AppStrings.close.value)
     case .impossibleToConvert:
       currencyViewController?.showError(title: AppStrings.error.value, message: AppStrings.notPossibleToConver.value,
                                         buttonLabel: AppStrings.close.value)
     }
   }
-
+  
   private func checkForConversionError(importToConvert: String) -> Result<CurrencyConverterViewData, ConverterError>
   {
     guard let number = NumbersUtil.convertStringToDouble(stringNumber: importToConvert) else {
       return Result.failure(.valueNotFormatted)
     }
-
+    
     guard let currencyFrom = currencyFrom, let currencyTo = currencyTo else {
       return Result.failure(.bothCurrencyNotSelected)
     }
-
+    
     let valueConverted = currencyConverter.convertCurrencyValue(fromCur: currencyFrom, toCur: currencyTo,
                                                                 valueToConvert: number)
     guard let stringConverted = NumbersUtil.converDoubleToFormattedString(importInserted: valueConverted) else {
       return Result.failure(.impossibleToConvert)
     }
-
+    
     let viewData = CurrencyConverterViewData(topAmount: importToConvert, topCurrency: currencyFrom,
-                                         bottomAmount: stringConverted, bottomCurrency: currencyTo)
-
+                                             bottomAmount: stringConverted, bottomCurrency: currencyTo)
+    
     return Result.success(viewData)
   }
 }

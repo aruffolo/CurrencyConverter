@@ -10,23 +10,23 @@ import Foundation
 
 struct CurrencyConverterCalculator
 {
-    var currencies: [String: Double]!
-
-    func convertCurrencyValue(fromCur: String, toCur: String, valueToConvert: Double) -> Double
+  var currencies: [String: Double]!
+  
+  func convertCurrencyValue(fromCur: String, toCur: String, valueToConvert: Double) -> Double
+  {
+    guard let baseFromRate = currencies[fromCur], let baseToRate = currencies[toCur]
+      else
     {
-        guard let baseFromRate = currencies[fromCur], let baseToRate = currencies[toCur]
-            else
-        {
-            let errorMessage = """
-            Rates provided are from the same source that creates me, I must contain them
-            from currency: \(fromCur), to currency: \(toCur)
-            """
-            fatalError(errorMessage)
-        }
-        
-        let baseCurValue = valueToConvert * baseFromRate
-        let toCurValue = baseCurValue * baseToRate
-        
-        return toCurValue
+      let errorMessage = """
+      Rates provided are from the same source that creates me, I must contain them
+      from currency: \(fromCur), to currency: \(toCur)
+      """
+      fatalError(errorMessage)
     }
+    
+    let baseCurValue = valueToConvert * baseFromRate
+    let toCurValue = baseCurValue * baseToRate
+    
+    return toCurValue
+  }
 }

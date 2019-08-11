@@ -11,16 +11,16 @@ import UIKit
 
 class CurrencyPickerViewControllerMock: UIViewController, CurrencyPickerViewProtocol
 {
-    var closePressed: Bool = false
-    var indexSelectedArrived: Int = 0
-
-    func closeView()
-    {
-        closePressed = true
-    }
-
-    func closeWithIndexSelected(index: Int)
-    {
-        indexSelectedArrived = index
-    }
+  var closePressed: Bool = false
+  var indexSelectedArrived: Int = 0
+  
+  func closeView()
+  {
+    closePressed = true
+  }
+  
+  func closeWithIndexSelected(index: Int)
+  {
+    indexSelectedArrived = index
+  }
 }

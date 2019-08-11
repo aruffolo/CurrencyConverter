@@ -10,31 +10,31 @@ import XCTest
 
 class CurrencyConverterUITests: XCTestCase
 {
-    var app: XCUIApplication!
-
-    override func setUp()
+  var app: XCUIApplication!
+  
+  override func setUp()
+  {
+    continueAfterFailure = false
+    
+    app = XCUIApplication()
+    app.launch()
+  }
+  
+  func testAmountConvertedKeepsPlaceholder()
+  {
+    let convertButton = app.buttons["CONVERT ↓"]
+    convertButton.tap()
+    
+    let closeButton = app.alerts["Error"].buttons["Close"]
+    closeButton.tap()
+    convertButton.tap()
+    closeButton.tap()
+    
+    if let textfieldValue = app.textFields["amountConverted"].value as? String
     {
-        continueAfterFailure = false
-
-        app = XCUIApplication()
-        app.launch()
+      XCTAssertTrue(textfieldValue == "Amount converted")
     }
-
-    func testAmountConvertedKeepsPlaceholder()
-    {
-        let convertButton = app.buttons["CONVERT ↓"]
-        convertButton.tap()
-
-        let closeButton = app.alerts["Error"].buttons["Close"]
-        closeButton.tap()
-        convertButton.tap()
-        closeButton.tap()
-
-        if let textfieldValue = app.textFields["amountConverted"].value as? String
-        {
-            XCTAssertTrue(textfieldValue == "Amount converted")
-        }
-
-        XCTAssertTrue(app.textFields["amountConverted"].placeholderValue == "Amount converted")
-    }
+    
+    XCTAssertTrue(app.textFields["amountConverted"].placeholderValue == "Amount converted")
+  }
 }

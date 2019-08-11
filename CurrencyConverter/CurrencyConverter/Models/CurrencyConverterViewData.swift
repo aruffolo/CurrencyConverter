@@ -10,9 +10,9 @@ import Foundation
 
 struct CurrencyConverterViewData
 {
-    var topAmount: String
-    var topCurrency: String
-    
-    var bottomAmount: String
-    var bottomCurrency: String
+  var topAmount: String
+  var topCurrency: String
+  
+  var bottomAmount: String
+  var bottomCurrency: String
 }

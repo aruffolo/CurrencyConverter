@@ -10,27 +10,27 @@ import Foundation
 
 struct CurrencyPickerViewModel: CurrencyPickerViewModelProtocol
 {
-    private weak var view: CurrencyPickerViewProtocol?
-    private var indexSelected: Int
-    
-    init(view: CurrencyPickerViewProtocol)
-    {
-        self.view = view
-        indexSelected = 0
-    }
-    
-    mutating func indexChanged(index: Int)
-    {
-        self.indexSelected = index
-    }
-
-    func cancelButtonPressed()
-    {
-        view?.closeView()
-    }
-    
-    func doneButtonPressed()
-    {
-        view?.closeWithIndexSelected(index: indexSelected)
-    }
+  private weak var view: CurrencyPickerViewProtocol?
+  private var indexSelected: Int
+  
+  init(view: CurrencyPickerViewProtocol)
+  {
+    self.view = view
+    indexSelected = 0
+  }
+  
+  mutating func indexChanged(index: Int)
+  {
+    self.indexSelected = index
+  }
+  
+  func cancelButtonPressed()
+  {
+    view?.closeView()
+  }
+  
+  func doneButtonPressed()
+  {
+    view?.closeWithIndexSelected(index: indexSelected)
+  }
 }

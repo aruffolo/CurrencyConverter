@@ -11,15 +11,15 @@ import UIKit
 
 protocol CurrencyConverterViewProtocol where Self: UIViewController
 {
-    var viewModel: CurrencyConverterViewModelProtocol! { get set }
-    
-    var showCurrencyList: ((_ currencies: [String]) -> Void)? { get set }
-    func currencyIndexSelected(index: Int)
-    
-    func presentCurrencyPicker(currencies: [String])
-    
-    func updateView(viewData: CurrencyConverterViewData)
-    
-    func showError(title: String, message: String, buttonLabel: String)
-    func showErrorForDataFailure(title: String, message: String, buttonLabel: String)
+  var viewModel: CurrencyConverterViewModelProtocol! { get set }
+  
+  var showCurrencyList: ((_ currencies: [String]) -> Void)? { get set }
+  func currencyIndexSelected(index: Int)
+  
+  func presentCurrencyPicker(currencies: [String])
+  
+  func updateView(viewData: CurrencyConverterViewData)
+  
+  func showError(title: String, message: String, buttonLabel: String)
+  func showErrorForDataFailure(title: String, message: String, buttonLabel: String)
 }

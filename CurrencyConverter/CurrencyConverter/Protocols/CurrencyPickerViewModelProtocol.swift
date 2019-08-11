@@ -11,9 +11,9 @@ import UIKit
 
 protocol CurrencyPickerViewModelProtocol
 {
-    mutating func indexChanged(index: Int)
+  mutating func indexChanged(index: Int)
 
-    func cancelButtonPressed()
+  func cancelButtonPressed()
 
-    func doneButtonPressed()
+  func doneButtonPressed()
 }

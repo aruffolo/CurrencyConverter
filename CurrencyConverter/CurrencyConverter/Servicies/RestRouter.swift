@@ -80,18 +80,7 @@ public enum RestRouter: URLRequestConvertible
 
     if method == .post
     {
-      if let parameters = parameters
-      {
-        do
-        {
-          urlRequest.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
-        }
-        catch
-        {
-          throw AFError.parameterEncodingFailed(reason: .jsonEncodingFailed(error: error))
-        }
-      }
-      return urlRequest
+      return try createPostUrlRequest(urlRequest: &urlRequest)
     }
     else
     {
@@ -99,5 +88,21 @@ public enum RestRouter: URLRequestConvertible
       print("GET request url\n: \(String(describing: finalRerquest.url?.absoluteString))")
       return finalRerquest
     }
+  }
+
+  private func createPostUrlRequest(urlRequest: inout URLRequest) throws -> URLRequest
+  {
+    if let parameters = parameters
+    {
+      do
+      {
+        urlRequest.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
+      }
+      catch
+      {
+        throw AFError.parameterEncodingFailed(reason: .jsonEncodingFailed(error: error))
+      }
+    }
+    return urlRequest
   }
 }

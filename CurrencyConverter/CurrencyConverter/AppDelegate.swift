@@ -11,16 +11,16 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate
 {
-    var window: UIWindow?
-    var appCoordinator: AppCoordinator!
-
+  var window: UIWindow?
+  var appCoordinator: AppCoordinator!
+  
   func application(_ application: UIApplication,
                    didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
     // Override point for customization after application launch.
     
     if let rootViewController = window?.rootViewController as? CurrencyConverterViewProtocol
     {
-        appCoordinator = AppCoordinator(rootViewController: rootViewController)
+      appCoordinator = AppCoordinator(rootViewController: rootViewController)
     }
     
     return true

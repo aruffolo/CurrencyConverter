@@ -10,17 +10,17 @@ import Foundation
 
 enum AppStrings: String
 {
-    case error = "error_key"
-    case serviceUnavailable = "service_unvailable"
-    case retry = "retry"
-    case valueFormatError = "value_format_error"
-    case close = "close"
-    case selectBothCurrency = "select_both_currency"
-    case notPossibleToConver = "not_possible_convert"
-    case currency = "currency"
-    
-    var value: String {
-        let v = NSLocalizedString(self.rawValue, tableName: "AppMessages", comment: "")
-        return v
-    }
+  case error = "error_key"
+  case serviceUnavailable = "service_unvailable"
+  case retry = "retry"
+  case valueFormatError = "value_format_error"
+  case close = "close"
+  case selectBothCurrency = "select_both_currency"
+  case notPossibleToConver = "not_possible_convert"
+  case currency = "currency"
+  
+  var value: String {
+    let v = NSLocalizedString(self.rawValue, tableName: "AppMessages", comment: "")
+    return v
+  }
 }

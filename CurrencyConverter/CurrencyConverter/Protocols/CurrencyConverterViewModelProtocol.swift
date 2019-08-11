@@ -10,14 +10,14 @@ import Foundation
 
 protocol CurrencyConverterViewModelProtocol
 {
-    func viewWillAppear()
-    func loadData()
-    
-    func selectCurrencyTopButtonPressed()
-    func selectCurrencyBottomButtonPressed()
-    
-    func convertButtonPressed(importToConvert: String)
-    
-    func currencyIndexSelected(index: Int)
-    func topAmountChanged(amount: String)
+  func viewWillAppear()
+  func loadData()
+  
+  func selectCurrencyTopButtonPressed()
+  func selectCurrencyBottomButtonPressed()
+  
+  func convertButtonPressed(importToConvert: String)
+  
+  func currencyIndexSelected(index: Int)
+  func topAmountChanged(amount: String)
 }

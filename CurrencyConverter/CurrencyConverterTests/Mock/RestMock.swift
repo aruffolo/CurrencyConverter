@@ -14,13 +14,13 @@ class RestMock: RestProtocol
 {
   var failing: Bool
   var responseInvalid: Bool
-
+  
   init(failing: Bool, responseInvalid: Bool)
   {
     self.failing = failing
     self.responseInvalid = responseInvalid
   }
-
+  
   func latestCurrenciesRates(completion: @escaping (AFResult<ExchangeRates>) -> Void) {
     if failing
     {
@@ -37,7 +37,7 @@ class RestMock: RestProtocol
       createFakeSuccessResponse(completion: completion)
     }
   }
-
+  
   private func createFakeSuccessResponse(completion: @escaping (AFResult<ExchangeRates>) -> Void) {
     let rates: [String: Double] = [
       "EUR": 1,
