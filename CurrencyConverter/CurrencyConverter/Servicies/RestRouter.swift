@@ -9,18 +9,18 @@
 import Foundation
 import Alamofire
 
-fileprivate enum Constants
+private enum Constants
 {
   static let baseURLPath = "http://data.fixer.io/api"
   static let apiKey = "77fe6adc45afe7abbdbde5b813238dc2"
 }
 
-fileprivate enum EndPoints: String
+private enum EndPoints: String
 {
   case latest = "/latest"
 }
 
-fileprivate struct RestParameterKey
+private struct RestParameterKey
 {
   static let accessKey = "access_key"
 }

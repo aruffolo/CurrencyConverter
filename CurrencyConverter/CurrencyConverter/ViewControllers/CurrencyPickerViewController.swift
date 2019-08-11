@@ -20,7 +20,8 @@ class CurrencyPickerViewController: UIViewController, CurrencyPickerViewProtocol
     static func createCurrencyPickerViewController(currencies: [String]) -> CurrencyPickerViewController
     {
         let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-        guard let vc = storyboard.instantiateViewController(withIdentifier: "CurrencyPickerViewController") as? CurrencyPickerViewController else {
+        guard let vc = storyboard.instantiateViewController(withIdentifier: "CurrencyPickerViewController")
+          as? CurrencyPickerViewController else {
             fatalError("This must be a CurrencyPickerViewController")
         }
         vc.currencies = currencies
@@ -99,4 +100,3 @@ extension CurrencyPickerViewController: UIPickerViewDelegate
         viewModel.indexChanged(index: row)
     }
 }
-

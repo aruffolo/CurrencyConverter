@@ -21,9 +21,9 @@ class RestClient: RestProtocol
   }
 
   private func request<T: Codable>(_ urlConvertible: URLRequestConvertible,
-                                           completion: @escaping (AFResult<T>) -> Void)
+                                   completion: @escaping (AFResult<T>) -> Void)
   {
-    AF.request(urlConvertible).responseData(completionHandler:{ [weak self] (dataResponse: DataResponse<Data>) in
+    AF.request(urlConvertible).responseData(completionHandler: { [weak self] (dataResponse: DataResponse<Data>) in
       self?.printResponse(dataResponse)
       let decoder = JSONDecoder()
       let response: AFResult<T> = decoder.decodeResponse(from: dataResponse)

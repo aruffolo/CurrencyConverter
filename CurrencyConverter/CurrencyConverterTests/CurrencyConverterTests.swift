@@ -29,7 +29,8 @@ class CurrencyConverterTests: XCTestCase
         let viewController = CurrencyViewControllerMock()
         let currencyFetcher = CurrencyFetcherMock()
 
-        let currencyViewModel = CurrencyConverterViewModel(currencyViewController: viewController, ratesFetcher: currencyFetcher)
+        let currencyViewModel = CurrencyConverterViewModel(currencyViewController: viewController,
+                                                           ratesFetcher: currencyFetcher)
         viewController.viewModel = currencyViewModel
         viewController.callLoadDataForViewModel()
 
@@ -50,7 +51,8 @@ class CurrencyConverterTests: XCTestCase
         let viewController = CurrencyViewControllerMock()
         let currencyFetcher = CurrencyFetcherMock()
 
-        let currencyViewModel = CurrencyConverterViewModel(currencyViewController: viewController, ratesFetcher: currencyFetcher)
+        let currencyViewModel = CurrencyConverterViewModel(currencyViewController: viewController,
+                                                           ratesFetcher: currencyFetcher)
         viewController.viewModel = currencyViewModel
         viewController.callLoadDataForViewModel()
 
@@ -72,7 +74,8 @@ class CurrencyConverterTests: XCTestCase
         let viewController = CurrencyViewControllerMock()
         let currencyFetcher = CurrencyFetcherMock()
 
-        let currencyViewModel = CurrencyConverterViewModel(currencyViewController: viewController, ratesFetcher: currencyFetcher)
+        let currencyViewModel = CurrencyConverterViewModel(currencyViewController: viewController,
+                                                           ratesFetcher: currencyFetcher)
         viewController.viewModel = currencyViewModel
         viewController.callLoadDataForViewModel()
 
@@ -91,7 +94,8 @@ class CurrencyConverterTests: XCTestCase
         let viewController = CurrencyViewControllerMock()
         let currencyFetcher = CurrencyFetcherMock()
 
-        let currencyViewModel = CurrencyConverterViewModel(currencyViewController: viewController, ratesFetcher: currencyFetcher)
+        let currencyViewModel = CurrencyConverterViewModel(currencyViewController: viewController,
+                                                           ratesFetcher: currencyFetcher)
         viewController.viewModel = currencyViewModel
         viewController.callLoadDataForViewModel()
 
@@ -126,7 +130,8 @@ class CurrencyConverterTests: XCTestCase
         let viewController = CurrencyViewControllerMock()
         let currencyFetcher = CurrencyFetcherMock()
 
-        let currencyViewModel = CurrencyConverterViewModel(currencyViewController: viewController, ratesFetcher: currencyFetcher)
+        let currencyViewModel = CurrencyConverterViewModel(currencyViewController: viewController,
+                                                           ratesFetcher: currencyFetcher)
         viewController.viewModel = currencyViewModel
         viewController.callLoadDataForViewModel()
 
@@ -140,7 +145,8 @@ class CurrencyConverterTests: XCTestCase
         let viewController = CurrencyViewControllerMock()
         let currencyFetcher = CurrencyFetcherFailMock()
 
-        let currencyViewModel = CurrencyConverterViewModel(currencyViewController: viewController, ratesFetcher: currencyFetcher)
+        let currencyViewModel = CurrencyConverterViewModel(currencyViewController: viewController,
+                                                           ratesFetcher: currencyFetcher)
         viewController.viewModel = currencyViewModel
         viewController.callLoadDataForViewModel()
 

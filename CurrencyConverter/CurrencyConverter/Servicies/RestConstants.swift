@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 enum HTTPHeaderField: String
 {
   case authentication = "Authorization"
@@ -21,4 +20,3 @@ enum ContentType: String
 {
   case json = "application/json"
 }
-
