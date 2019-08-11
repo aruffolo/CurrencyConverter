@@ -38,9 +38,11 @@ class CurrencyConverterTests: XCTestCase
     currencyViewModel.currencyIndexSelected(index: 4)
     currencyViewModel.selectCurrencyBottomButtonPressed()
     currencyViewModel.currencyIndexSelected(index: 7)
+
+    let numberConverted = NumbersUtil.converDoubleToFormattedString(importInserted: 1.234)
     
     currencyViewModel.convertButtonPressed(importToConvert: "1")
-    XCTAssert(viewController.bottomAmount == "1.23"
+    XCTAssert(viewController.bottomAmount == numberConverted
       && viewController.bottomCurrency == usdCur
       && viewController.topCurrency == eurCur
       && viewController.topAmount == "1")
