@@ -121,7 +121,7 @@ class CurrencyConverterViewController: UIViewController, CurrencyConverterViewPr
             message, preferredStyle: UIAlertController.Style.alert)
         
         alertController.addAction(UIAlertAction(title: buttonLabel,
-                                                style: UIAlertAction.Style.default, handler: { [weak self] action in
+                                                style: UIAlertAction.Style.default, handler: { [weak self] _ in
             self?.viewModel.loadData()
         }))
         

@@ -1,6 +1,15 @@
 disabled_rules: # rule identifiers to exclude from running
  - trailing_whitespace
  - opening_brace
+
+# rule identifiers to opt in
+opt_in_rules:
+  - fatal_error_message
+  - first_where
+  - closure_end_indentation
+  - closure_spacing
+  - empty_count
+
 function_body_length:
  - 10 # warning
  - 15 # error
@@ -14,6 +23,10 @@ identifier_name:
     - URL
     - GlobalAPIKey
 
+file_length:
+  warning: 400
+  error: 1000
+
 statement_position:
   statement_mode: uncuddled_else
 
@@ -25,6 +38,22 @@ type_name:
     warning: 50
     error: 60
   excluded: iPhone # excluded via string
+
+line_length:
+  warning: 120
+  error: 200
+  ignores_urls: false
+  ignores_function_declarations: false
+  ignores_comments: false
+
+function_parameter_count:
+  warning: 5
+  error: 8
+
+cyclomatic_complexity:
+  warning: 10
+  error: 20
+  ignores_case_statements: false
 
 excluded: # paths to ignore during linting. Takes precedence over `included`.
  - Carthage
