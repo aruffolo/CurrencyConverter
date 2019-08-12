@@ -11,3 +11,7 @@ Swift 5 and Alamofire 5 beta are used. Alamofire is a widley used framework to h
 
 ## Linting
 Swiftlint is used in this project to ensure clean code rules are respected, rules have been modified to be more strict than the default, for example functions are no longer that 15 lines of code. You can read the full list in the .swiftling.yml file
+
+## License
+
+[MIT licensed.](LICENSE)
