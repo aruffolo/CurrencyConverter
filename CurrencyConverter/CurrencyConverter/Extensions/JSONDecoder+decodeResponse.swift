@@ -22,8 +22,7 @@ extension JSONDecoder
     guard let responseData = response.data else
     {
       print("didn't get any data from API")
-      return .failure(BackendError.parsing(reason:
-        "Did not get data in response"))
+      return .failure(BackendError.parsing(reason: "Did not get data in response"))
     }
 
     do

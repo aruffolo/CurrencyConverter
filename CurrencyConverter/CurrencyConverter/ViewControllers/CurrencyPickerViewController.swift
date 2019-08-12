@@ -96,7 +96,6 @@ extension CurrencyPickerViewController: UIPickerViewDelegate
 {
   func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
   {
-    print("row selected: \(row)")
     viewModel.indexChanged(index: row)
   }
 }

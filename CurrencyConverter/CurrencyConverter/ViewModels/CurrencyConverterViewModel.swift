@@ -109,7 +109,7 @@ class CurrencyConverterViewModel: CurrencyConverterViewModelProtocol
   
   func convertButtonPressed(importToConvert: String)
   {
-    let result = checkForConversionError(importToConvert: importToConvert)
+    let result = convertCurrentImport(importToConvert: importToConvert)
     
     switch result
     {
@@ -136,7 +136,7 @@ class CurrencyConverterViewModel: CurrencyConverterViewModelProtocol
     }
   }
   
-  private func checkForConversionError(importToConvert: String) -> Result<CurrencyConverterViewData, ConverterError>
+  private func convertCurrentImport(importToConvert: String) -> Result<CurrencyConverterViewData, ConverterError>
   {
     guard let number = NumbersUtil.convertStringToDouble(stringNumber: importToConvert) else {
       return Result.failure(.valueNotFormatted)

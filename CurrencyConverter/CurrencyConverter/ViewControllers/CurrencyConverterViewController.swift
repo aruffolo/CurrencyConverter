@@ -58,7 +58,6 @@ class CurrencyConverterViewController: UIViewController, CurrencyConverterViewPr
   {
     selectCurrencyTop.layer.cornerRadius = selectCurrencyTop.frame.height / 2
     selectCurrencyBottom.layer.cornerRadius = selectCurrencyTop.frame.height / 2
-    
     convertButton.layer.cornerRadius = convertButton.frame.height / 2
   }
   
@@ -70,10 +69,8 @@ class CurrencyConverterViewController: UIViewController, CurrencyConverterViewPr
     layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
   }
   
-  // this should call the view model
   func currencyIndexSelected(index: Int)
   {
-    print("index arrived: \(index)")
     viewModel.currencyIndexSelected(index: index)
   }
   

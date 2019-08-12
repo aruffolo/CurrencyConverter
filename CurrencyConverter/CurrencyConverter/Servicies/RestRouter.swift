@@ -84,9 +84,9 @@ public enum RestRouter: URLRequestConvertible
     }
     else
     {
-      let finalRerquest = try encoding.encode(urlRequest, with: parameters)
-      print("GET request url\n: \(String(describing: finalRerquest.url?.absoluteString))")
-      return finalRerquest
+      let finalRequest = try encoding.encode(urlRequest, with: parameters)
+      print("GET request url\n: \(String(describing: finalRequest.url?.absoluteString))")
+      return finalRequest
     }
   }
 

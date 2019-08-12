@@ -30,12 +30,12 @@ class CurrencyViewControllerMock: UIViewController, CurrencyConverterViewProtoco
   
   func currencyIndexSelected(index: Int)
   {
-    
+    // nothing to do here
   }
   
   func presentCurrencyPicker(currencies: [String])
   {
-    
+    // nothing to do here
   }
   
   func updateView(viewData: CurrencyConverterViewData)
@@ -48,7 +48,7 @@ class CurrencyViewControllerMock: UIViewController, CurrencyConverterViewProtoco
   
   func showError(title: String, message: String, buttonLabel: String)
   {
-    
+    // nothing to do here
   }
   
   func showErrorForDataFailure(title: String, message: String, buttonLabel: String)
