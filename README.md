@@ -1,6 +1,6 @@
 # CurrencyConverter
 
-Currency is an example app that uses the REST service from flex.io to convert currencies.
+Currency is an example app that uses the REST service from Fixer.io to convert currencies.
 
 ## App Architecture
 MVVM-C is the architecture choosen for this app. The 'C' means Coordinator, an object that is responsible for navigating through screens and dependency injection.
